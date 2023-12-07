@@ -1,2 +1,3 @@
-# thermometer
+# Thermometer
+
 Raspberry-Pi-based thermometer
