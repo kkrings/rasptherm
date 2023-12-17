@@ -70,6 +70,13 @@
         "command": "poetry run pytest tests",
         "cwd": "packages/sensor"
       }
+    },
+    "protoc": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry run ./protoc.py",
+        "cwd": "packages/sensor"
+      }
     }
   },
   "tags": []
