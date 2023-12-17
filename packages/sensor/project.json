@@ -51,7 +51,8 @@
       "options": {
         "lintFilePatterns": [
           "sensor",
-          "tests"
+          "tests",
+          "protoc.py"
         ]
       }
     },
@@ -59,7 +60,7 @@
       "executor": "@nxlv/python:run-commands",
       "outputs": [],
       "options": {
-        "command": "poetry run black sensor tests",
+        "command": "poetry run black sensor tests protoc.py",
         "cwd": "packages/sensor"
       }
     },
@@ -68,6 +69,14 @@
       "outputs": [],
       "options": {
         "command": "poetry run pytest tests",
+        "cwd": "packages/sensor"
+      }
+    },
+    "typecheck": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "poetry run mypy --strict sensor tests protoc.py",
         "cwd": "packages/sensor"
       }
     },

@@ -2,7 +2,7 @@
 
 import pathlib
 
-import grpc_tools.protoc
+import grpc_tools.protoc  # type: ignore
 
 
 def main() -> None:
