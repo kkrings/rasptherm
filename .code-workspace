@@ -1,0 +1,18 @@
+{
+    "folders": [
+        {
+            "name": "Root",
+            "path": ".",
+        },
+        {
+            "name": "Sensor",
+            "path": "packages/sensor"
+        }
+    ],
+    "settings": {
+        "editor.renderWhitespace": "all",
+        "editor.rulers": [
+            88
+        ]
+    }
+}
