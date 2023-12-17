@@ -55,11 +55,19 @@
         ]
       }
     },
+    "format": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "poetry run black sensor tests",
+        "cwd": "packages/sensor"
+      }
+    },
     "test": {
       "executor": "@nxlv/python:run-commands",
       "outputs": [],
       "options": {
-        "command": "poetry run pytest tests/",
+        "command": "poetry run pytest tests",
         "cwd": "packages/sensor"
       }
     }
