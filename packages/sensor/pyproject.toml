@@ -9,17 +9,19 @@ readme = "README.md"
 [[tool.poetry.packages]]
 include = "sensor"
 
+[tool.poetry.scripts]
+sensor = "sensor.cli.main:cli"
+
 [tool.poetry.dependencies]
 python = ">=3.9"
+click = "^8.1.7"
+grpcio-tools = "^1.60.0"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "0.1.8"
 pytest = "7.4.3"
 black = "^23.12.0"
 mypy = "^1.7.1"
-
-[tool.poetry.group.grpc.dependencies]
-grpcio-tools = "^1.60.0"
 
 [build-system]
 requires = ["poetry-core"]

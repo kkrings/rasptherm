@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package interface.sensor;
+package sensor.interface.sensor;
 
-service SensorService {
+service Sensor {
   rpc ReadSensor (ReadSensorRequest) returns (ReadSensorResponse) {}
 }
 
