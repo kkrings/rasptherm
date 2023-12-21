@@ -7,7 +7,7 @@
     "nx": "nx"
   },
   "devDependencies": {
-    "@nxlv/python": "^16.3.1",
+    "@nxlv/python": "^17.0.0",
     "nx": "^17.2.5"
   },
   "private": true,
