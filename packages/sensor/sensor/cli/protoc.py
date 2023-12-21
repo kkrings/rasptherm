@@ -8,8 +8,7 @@ import sensor
 
 def protoc() -> None:
     grpc_tools.command.build_package_protos(
-        package_root=_get_sensor_package_path(),
-        strict_mode=True,
+        package_root=_get_sensor_package_path(), strict_mode=True
     )
 
 
