@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from interface import sensor_pb2 as interface_dot_sensor__pb2
+from sensor.interface import sensor_pb2 as sensor_dot_interface_dot_sensor__pb2
 
 
 class SensorStub(object):
@@ -16,8 +16,8 @@ class SensorStub(object):
         """
         self.ReadSensor = channel.unary_unary(
                 '/sensor.interface.sensor.Sensor/ReadSensor',
-                request_serializer=interface_dot_sensor__pb2.ReadSensorRequest.SerializeToString,
-                response_deserializer=interface_dot_sensor__pb2.ReadSensorResponse.FromString,
+                request_serializer=sensor_dot_interface_dot_sensor__pb2.ReadSensorRequest.SerializeToString,
+                response_deserializer=sensor_dot_interface_dot_sensor__pb2.ReadSensorResponse.FromString,
                 )
 
 
@@ -35,8 +35,8 @@ def add_SensorServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ReadSensor': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadSensor,
-                    request_deserializer=interface_dot_sensor__pb2.ReadSensorRequest.FromString,
-                    response_serializer=interface_dot_sensor__pb2.ReadSensorResponse.SerializeToString,
+                    request_deserializer=sensor_dot_interface_dot_sensor__pb2.ReadSensorRequest.FromString,
+                    response_serializer=sensor_dot_interface_dot_sensor__pb2.ReadSensorResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,7 +60,7 @@ class Sensor(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/sensor.interface.sensor.Sensor/ReadSensor',
-            interface_dot_sensor__pb2.ReadSensorRequest.SerializeToString,
-            interface_dot_sensor__pb2.ReadSensorResponse.FromString,
+            sensor_dot_interface_dot_sensor__pb2.ReadSensorRequest.SerializeToString,
+            sensor_dot_interface_dot_sensor__pb2.ReadSensorResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
