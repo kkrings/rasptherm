@@ -3,8 +3,7 @@ from collections.abc import AsyncIterator
 import grpc.aio  # type: ignore
 import pytest
 
-from sensor.interface import sensor_pb2_grpc
-from sensor.interface.sensor_pb2_grpc import SensorStub
+from sensor.interface.sensor_pb2_grpc import SensorStub, add_SensorServicer_to_server
 from sensor.service import SensorService
 from sensor.types import SensorReadout
 
@@ -30,7 +29,7 @@ def sensor(temperature: float, humidity: float) -> SensorService:
 @pytest.fixture
 async def port(sensor: SensorService) -> AsyncIterator[int]:
     server = grpc.aio.server()
-    sensor_pb2_grpc.add_SensorServicer_to_server(sensor, server)  #  type: ignore
+    add_SensorServicer_to_server(sensor, server)  #  type: ignore
     port = server.add_insecure_port("[::]")
     await server.start()
     yield port
