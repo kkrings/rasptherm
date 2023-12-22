@@ -1,3 +1,9 @@
 {
-    "python.defaultInterpreterPath": ".venv/bin/python"
+    "python.defaultInterpreterPath": ".venv/bin/python",
+    "mypy-type-checker.path": [".venv/bin/mypy"],
+    "mypy-type-checker.args": ["--strict"],
+    "ruff.path": [".venv/bin/ruff"],
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    }
 }

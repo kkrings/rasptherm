@@ -59,7 +59,7 @@
       "executor": "@nxlv/python:run-commands",
       "outputs": [],
       "options": {
-        "command": "poetry run black sensor tests",
+        "command": "poetry run ruff format sensor tests",
         "cwd": "packages/sensor"
       }
     },
