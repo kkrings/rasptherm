@@ -34,9 +34,6 @@ extend-exclude = ["**/*_pb2*"]
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I"]
 
-[tool.black]
-extend-exclude = ".*_pb2*"
-
 [tool.mypy]
 exclude = [".*_pb2*"]
 
