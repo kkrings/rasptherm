@@ -7,6 +7,7 @@
     "nx": "nx"
   },
   "devDependencies": {
+    "@nx/nest": "^17.2.7",
     "@nxlv/python": "^17.0.0",
     "nx": "^17.2.5"
   },
