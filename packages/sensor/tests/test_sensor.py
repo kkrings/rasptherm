@@ -1,8 +1,6 @@
-import grpc.aio  # type: ignore
 import pytest
 
-from sensor.interface.sensor_pb2 import ReadSensorRequest, ReadSensorResponse
-from sensor.interface.sensor_pb2_grpc import SensorStub
+from sensor.client import non_ssl_sensor_connection
 from sensor.setup import non_ssl_sensor_setup
 from sensor.types import SensorReadout
 
@@ -27,13 +25,9 @@ async def readout(expected_readout: SensorReadout) -> SensorReadout:
 
     await server.start()
 
-    async with grpc.aio.insecure_channel(f"localhost:{port}") as channel:
-        client = SensorStub(channel)  # type: ignore
-        response: ReadSensorResponse = await client.ReadSensor(ReadSensorRequest())
+    async with non_ssl_sensor_connection(host=f"localhost:{port}") as client:
+        readout = await client.read_sensor()
 
     await server.stop(grace=None)
 
-    return SensorReadout(
-        temperature_degree_celsius=response.temperature_degree_celsius,
-        relative_humidity_percent=response.relative_humidity_percent,
-    )
+    return readout
