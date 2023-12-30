@@ -17,11 +17,11 @@ def expected_readout() -> SensorReadout:
 
 
 @pytest.fixture
-async def readout(expected_readout: SensorReadout) -> SensorReadout:
+async def readout(expected_readout: SensorReadout, port: int) -> SensorReadout:
     async def read_sensor() -> SensorReadout:
         return expected_readout
 
-    server, port = non_ssl_sensor_setup(read_sensor)
+    server, port = non_ssl_sensor_setup(read_sensor, port)
 
     await server.start()
 
