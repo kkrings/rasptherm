@@ -4,10 +4,13 @@
   "description": "Raspberry-Pi-based thermometer",
   "license": "GPL-3.0-only",
   "scripts": {
-    "nx": "nx"
+    "nx": "nx",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@nxlv/python": "^17.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.0",
     "nx": "^17.2.5"
   },
   "private": true,
