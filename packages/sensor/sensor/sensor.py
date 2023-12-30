@@ -9,7 +9,7 @@ from sensor.types import ReadSensor
 
 class Sensor(SensorServicer):
     def __init__(self, read_sensor: ReadSensor) -> None:
-        self._read_sensor=read_sensor
+        self._read_sensor = read_sensor
 
     @override
     async def ReadSensor(

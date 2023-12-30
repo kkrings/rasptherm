@@ -1,4 +1,9 @@
+import path from 'path';
+
 export default {
-  'packages/**/*.[ts,tsx,py]': (files) =>
-    `nx affected -t format --files=${files.join(',')}`
+  '**/*.{py,ts,tsx}': (files) => {
+    const cwd = process.cwd();
+    files = files.map((file) => path.relative(cwd, file));
+    return `nx affected -t format --files=${files.join(',')}`;
+  }
 }
