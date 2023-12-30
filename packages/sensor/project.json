@@ -55,7 +55,15 @@
         ]
       }
     },
-    "format": {
+    "format:check": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "poetry run ruff format --check sensor tests",
+        "cwd": "packages/sensor"
+      }
+    },
+    "format:write": {
       "executor": "@nxlv/python:run-commands",
       "outputs": [],
       "options": {
