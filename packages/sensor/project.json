@@ -46,29 +46,32 @@
       }
     },
     "lint": {
-      "executor": "@nxlv/python:ruff-check",
-      "outputs": [],
-      "options": {
-        "lintFilePatterns": [
-          "sensor",
-          "tests"
-        ]
-      }
-    },
-    "format:check": {
       "executor": "@nxlv/python:run-commands",
       "outputs": [],
       "options": {
-        "command": "poetry run ruff format --check sensor tests",
-        "cwd": "packages/sensor"
+        "command": "poetry run ruff check sensor tests",
+        "cwd": "packages/sensor" 
+      },
+      "configurations": {
+        "fix": {
+          "command": "poetry run ruff check --fix sensor tests"
+        }
       }
     },
-    "format:write": {
+    "format": {
       "executor": "@nxlv/python:run-commands",
       "outputs": [],
       "options": {
         "command": "poetry run ruff format sensor tests",
         "cwd": "packages/sensor"
+      },
+      "configurations": {
+        "write": {
+          "command": "poetry run ruff format sensor tests"
+        },
+        "check": {
+          "command": "poetry run ruff format --check sensor tests"
+        }
       }
     },
     "test": {
