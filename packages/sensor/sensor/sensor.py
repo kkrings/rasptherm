@@ -13,7 +13,7 @@ class Sensor(SensorServicer):
 
     @override
     async def ReadSensor(
-        self, _: ReadSensorRequest, __: ServicerContext
+        self, _: ReadSensorRequest, __:ServicerContext
     ) -> ReadSensorResponse:
         temperature, humidity = await self._read_sensor()
 
