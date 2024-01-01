@@ -5,6 +5,10 @@
             "path": ".",
         },
         {
+            "name": "Backend",
+            "path": "packages/backend"
+        },
+        {
             "name": "Sensor",
             "path": "packages/sensor"
         }
