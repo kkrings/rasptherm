@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from backend.schemas.sensor import ReadSensorModel
+from backend.models.sensor import ReadSensorModel
 
 sensor_router = APIRouter(prefix="/sensor", tags=["sensor"])
 

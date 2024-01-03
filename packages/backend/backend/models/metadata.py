@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class MetadataSchema(BaseModel):
+class MetadataModel(BaseModel):
     description: str
     license: str
     version: str
