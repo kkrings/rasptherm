@@ -11,8 +11,7 @@ include = "backend"
 
 [tool.poetry.dependencies]
 python = ">=3.9"
-fastapi = "^0.108.0"
-uvicorn = {extras = ["standard"], version = "^0.25.0"}
+fastapi = {extras = ["all"], version = "^0.108.0"}
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.8.0"
