@@ -89,6 +89,14 @@
         "command": "poetry run mypy --strict backend tests",
         "cwd": "packages/backend"
       }
+    },
+    "serve": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "poetry run uvicorn --env-file .env backend.main:app",
+        "cwd": "packages/backend"
+      }
     }
   },
   "tags": []
