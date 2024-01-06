@@ -6,7 +6,7 @@ from backend.utils.repeat import repeat_task
 
 
 def test_repeat_task(num_task_calls: int) -> None:
-    assert num_task_calls > 0
+    assert num_task_calls > 1
 
 
 class SomeTask:
