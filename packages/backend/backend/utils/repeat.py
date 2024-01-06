@@ -7,7 +7,7 @@ _Task = Callable[[], Awaitable[None]]
 _Delay = Annotated[float, "seconds"]
 
 
-class RepeatTask:
+class _RepeatTask:
     def __init__(self, task: _Task, delay: _Delay) -> None:
         self._stop = False
         self._delay = delay
@@ -26,7 +26,7 @@ class RepeatTask:
 @asynccontextmanager
 async def repeat_task(task: _Task, delay: _Delay) -> AsyncIterator[None]:
     try:
-        repeated_task = RepeatTask(task, delay)
+        repeated_task = _RepeatTask(task, delay)
         yield
     finally:
         await repeated_task.stop()
