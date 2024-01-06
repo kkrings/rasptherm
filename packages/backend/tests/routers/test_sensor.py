@@ -7,7 +7,7 @@ from sensor.types import SensorReadout
 
 from backend.models.sensor import ReadSensorModel
 from backend.services.sensor import get_sensor
-from tests.utils import override_dependency
+from backend.utils.dependency import override_dependency
 
 
 @pytest.mark.usefixtures("override_get_sensor")
