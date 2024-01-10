@@ -1,5 +1,5 @@
 import asyncio
-from typing import TextIO
+from typing import Optional, TextIO
 
 import click
 
@@ -31,7 +31,7 @@ def serve(
     variant: ReadSensor,
     ssl_certificate: TextIO,
     ssl_private_key: TextIO,
-    ssl_root_certificate: TextIO | None,
+    ssl_root_certificate: Optional[TextIO],
 ) -> None:
     serve_coroutine = _serve(
         port,

@@ -1,3 +1,5 @@
+from typing import Optional
+
 import grpc  # type: ignore
 import grpc.aio  # type: ignore
 
@@ -10,7 +12,7 @@ def ssl_sensor_setup(
     read_sensor: ReadSensor,
     ssl_certificate: str,
     ssl_private_key: str,
-    ssl_root_certificate: str | None = None,
+    ssl_root_certificate: Optional[str] = None,
     port: int = 0,
 ) -> SensorSetup:
     sensor = _create_sensor(read_sensor)

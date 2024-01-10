@@ -1,3 +1,5 @@
+from typing import Optional
+
 from sensor.setup import non_ssl_sensor_setup, ssl_sensor_setup
 from sensor.types import ReadSensor
 
@@ -7,7 +9,7 @@ async def serve(
     variant: ReadSensor,
     ssl_certificate: str,
     ssl_private_key: str,
-    ssl_root_certificate: str | None = None,
+    ssl_root_certificate: Optional[str] = None,
 ) -> None:
     sensor, _ = ssl_sensor_setup(
         read_sensor=variant,

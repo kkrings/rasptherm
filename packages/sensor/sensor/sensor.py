@@ -1,6 +1,5 @@
-from typing import override
-
 from grpc.aio import ServicerContext  # type: ignore
+from typing_extensions import override
 
 from sensor.interface.sensor_pb2 import ReadSensorRequest, ReadSensorResponse
 from sensor.interface.sensor_pb2_grpc import SensorServicer
