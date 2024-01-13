@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "rasptherm-sensor"
+version = "0.1.0"
+description = "Temperature and humidity sensor abstraction"
+authors = []
+license = "GPL-3.0-only"
+readme = "README.md"
+
+[[tool.poetry.packages]]
+include = "rasptherm_sensor"
+
+[tool.poetry.scripts]
+rasptherm-sensor = "rasptherm_sensor.cli.main:cli"
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+click = "^8.1.7"
+grpcio = "^1.60.0"
+grpcio-tools = "^1.60.0"
+adafruit-circuitpython-ahtx0 = "^1.0.21"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.8.0"
+pytest = "^7.4.3"
+pytest-asyncio = "^0.23.2"
+ruff = "^0.1.9"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+extend-exclude = ["**/*_pb2*"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.mypy]
+python_version = "3.9"
+exclude = [".*_pb2*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning"]

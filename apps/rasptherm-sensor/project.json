@@ -1,0 +1,102 @@
+{
+  "name": "rasptherm-sensor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/rasptherm-sensor/rasptherm_sensor",
+  "targets": {
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "apps/rasptherm-sensor"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "options": {
+        "outputPath": "apps/rasptherm-sensor/dist",
+        "publish": false,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "poetry run ruff check rasptherm_sensor tests",
+        "cwd": "apps/rasptherm-sensor" 
+      },
+      "configurations": {
+        "fix": {
+          "command": "poetry run ruff check --fix rasptherm_sensor tests"
+        }
+      }
+    },
+    "format": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "poetry run ruff format rasptherm_sensor tests",
+        "cwd": "apps/rasptherm-sensor"
+      },
+      "configurations": {
+        "write": {
+          "command": "poetry run ruff format rasptherm_sensor tests"
+        },
+        "check": {
+          "command": "poetry run ruff format --check rasptherm_sensor tests"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "poetry run pytest tests",
+        "cwd": "apps/rasptherm-sensor"
+      }
+    },
+    "typecheck": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "poetry run mypy --strict rasptherm_sensor tests",
+        "cwd": "apps/rasptherm-sensor"
+      }
+    },
+    "cli": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry run rasptherm-sensor",
+        "cwd": "apps/rasptherm-sensor"
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package rasptherm_sensor.interface.sensor;
+
+service Sensor {
+  rpc ReadSensor (ReadSensorRequest) returns (ReadSensorResponse) {}
+}
+
+message ReadSensorRequest {
+}
+
+message ReadSensorResponse {
+  double temperature_degree_celsius = 1;
+  double relative_humidity_percent = 2;
+}

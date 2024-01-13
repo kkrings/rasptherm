@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = "Temperature and humidity sensor control backend"
+authors = []
+license = "GPL-3.0-only"
+readme = "README.md"
+
+[[tool.poetry.packages]]
+include = "backend"
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+
+[tool.poetry.dependencies.fastapi]
+extras = [ "all" ]
+version = "^0.108.0"
+
+[tool.poetry.dependencies.rasptherm-sensor]
+path = "../rasptherm-sensor"
+develop = true
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.8.0"
+pytest = "^7.4.3"
+ruff = "^0.1.9"
+pytest-asyncio = "^0.23.3"
+
+[build-system]
+requires = [ "poetry-core" ]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+plugins = [ "pydantic.mypy" ]
+
+[tool.ruff.lint]
+select = [ "E4", "E7", "E9", "F", "I" ]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning"]
