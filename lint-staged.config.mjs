@@ -1,7 +1,8 @@
 export default {
-  '**/*.{py}': (fileList) => {
+  '**/*.{py,ts,tsx}': (fileList) => {
     const files = fileList.join(',');
     return [
+      `nx format:write --files=${files}`,
       `nx affected -t format -c write --files=${files}`,
       `nx affected -t lint -c fix --files=${files}`
     ];
