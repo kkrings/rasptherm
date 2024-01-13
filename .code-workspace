@@ -5,13 +5,21 @@
             "path": ".",
         },
         {
+            "name": "Frontend",
+            "path": "apps/rasptherm"
+        },
+        {
             "name": "Backend",
             "path": "apps/rasptherm-backend"
         },
         {
             "name": "Sensor",
             "path": "apps/rasptherm-sensor"
-        }
+        },
+        {
+            "name": "E2E",
+            "path": "apps/rasptherm-e2e"
+        },
     ],
     "settings": {
         "editor.renderWhitespace": "all",
