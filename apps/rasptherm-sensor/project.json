@@ -26,10 +26,10 @@
     "build": {
       "executor": "@nxlv/python:build",
       "outputs": [
-        "{projectRoot}/dist"
+        "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "apps/rasptherm-sensor/dist",
+        "outputPath": "dist/apps/rasptherm-sensor",
         "publish": false,
         "lockedVersions": true,
         "bundleLocalDependencies": true
@@ -47,10 +47,9 @@
     },
     "lint": {
       "executor": "@nxlv/python:run-commands",
-      "outputs": [],
       "options": {
         "command": "poetry run ruff check rasptherm_sensor tests",
-        "cwd": "apps/rasptherm-sensor" 
+        "cwd": "apps/rasptherm-sensor"
       },
       "configurations": {
         "fix": {
@@ -60,7 +59,6 @@
     },
     "format": {
       "executor": "@nxlv/python:run-commands",
-      "outputs": [],
       "options": {
         "command": "poetry run ruff format rasptherm_sensor tests",
         "cwd": "apps/rasptherm-sensor"
@@ -76,7 +74,6 @@
     },
     "test": {
       "executor": "@nxlv/python:run-commands",
-      "outputs": [],
       "options": {
         "command": "poetry run pytest tests",
         "cwd": "apps/rasptherm-sensor"
@@ -84,7 +81,6 @@
     },
     "typecheck": {
       "executor": "@nxlv/python:run-commands",
-      "outputs": [],
       "options": {
         "command": "poetry run mypy --strict rasptherm_sensor tests",
         "cwd": "apps/rasptherm-sensor"
