@@ -1,8 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "plugins": [
-    "@nxlv/python"
-  ],
+  "plugins": ["@nxlv/python"],
   "targetDefaults": {
     "build": {
       "cache": true,
