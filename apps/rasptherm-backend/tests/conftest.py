@@ -2,7 +2,7 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from backend.main import app as _app
+from rasptherm_backend.main import app as _app
 
 
 @pytest.fixture

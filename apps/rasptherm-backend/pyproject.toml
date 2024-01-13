@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "backend"
+name = "rasptherm-backend"
 version = "0.1.0"
 description = "Temperature and humidity sensor control backend"
 authors = []
@@ -7,7 +7,7 @@ license = "GPL-3.0-only"
 readme = "README.md"
 
 [[tool.poetry.packages]]
-include = "backend"
+include = "rasptherm_backend"
 
 [tool.poetry.dependencies]
 python = ">=3.9"

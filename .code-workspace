@@ -6,11 +6,11 @@
         },
         {
             "name": "Backend",
-            "path": "packages/backend"
+            "path": "apps/rasptherm-backend"
         },
         {
             "name": "Sensor",
-            "path": "packages/sensor"
+            "path": "apps/rasptherm-sensor"
         }
     ],
     "settings": {

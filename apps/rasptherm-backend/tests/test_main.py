@@ -4,8 +4,8 @@ import pytest
 from fastapi import status
 from fastapi.testclient import TestClient
 
-import backend
-from backend.models.metadata import MetadataModel
+import rasptherm_backend as backend
+from rasptherm_backend.models.metadata import MetadataModel
 
 
 def test_read_root(client: TestClient, expected_metadata: MetadataModel) -> None:

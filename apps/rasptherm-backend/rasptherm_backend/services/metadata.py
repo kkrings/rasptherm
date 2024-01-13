@@ -1,7 +1,7 @@
 import importlib.metadata
 
-import backend
-from backend.models.metadata import MetadataModel
+import rasptherm_backend as backend
+from rasptherm_backend.models.metadata import MetadataModel
 
 
 def get_metadata() -> MetadataModel:

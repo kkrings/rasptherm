@@ -2,7 +2,7 @@ import asyncio
 
 import pytest
 
-from backend.utils.repeat import repeat_task
+from rasptherm_backend.utils.repeat import repeat_task
 
 
 def test_repeat_task(num_task_calls: int) -> None:

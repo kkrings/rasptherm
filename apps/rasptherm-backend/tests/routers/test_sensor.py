@@ -5,9 +5,9 @@ from fastapi import FastAPI, status
 from fastapi.testclient import TestClient
 from rasptherm_sensor.types import SensorReadout
 
-from backend.models.sensor import ReadSensorModel
-from backend.services.sensor import get_sensor
-from backend.utils.dependency import override_dependency
+from rasptherm_backend.models.sensor import ReadSensorModel
+from rasptherm_backend.services.sensor import get_sensor
+from rasptherm_backend.utils.dependency import override_dependency
 
 
 @pytest.mark.usefixtures("override_get_sensor")

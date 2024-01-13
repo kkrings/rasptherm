@@ -1,14 +1,14 @@
 {
-  "name": "backend",
+  "name": "rasptherm-backend",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/backend/backend",
+  "sourceRoot": "apps/rasptherm-backend/rasptherm_backend",
   "targets": {
     "lock": {
       "executor": "@nxlv/python:run-commands",
       "options": {
         "command": "poetry lock --no-update",
-        "cwd": "apps/backend"
+        "cwd": "apps/rasptherm-backend"
       }
     },
     "add": {
@@ -29,7 +29,7 @@
         "{projectRoot}/dist"
       ],
       "options": {
-        "outputPath": "apps/backend/dist",
+        "outputPath": "apps/rasptherm-backend/dist",
         "publish": false,
         "lockedVersions": true,
         "bundleLocalDependencies": true
@@ -49,12 +49,12 @@
       "executor": "@nxlv/python:run-commands",
       "outputs": [],
       "options": {
-        "command": "poetry run ruff check backend tests",
-        "cwd": "apps/backend"
+        "command": "poetry run ruff check rasptherm_backend tests",
+        "cwd": "apps/rasptherm-backend"
       },
       "configurations": {
         "fix": {
-          "command": "poetry run ruff check --fix backend tests"
+          "command": "poetry run ruff check --fix rasptherm_backend tests"
         }
       }
     },
@@ -62,15 +62,15 @@
       "executor": "@nxlv/python:run-commands",
       "outputs": [],
       "options": {
-        "command": "poetry run ruff format backend tests",
-        "cwd": "apps/backend"
+        "command": "poetry run ruff format rasptherm_backend tests",
+        "cwd": "apps/rasptherm-backend"
       },
       "configurations": {
         "write": {
-          "command": "poetry run ruff format backend tests"
+          "command": "poetry run ruff format rasptherm_backend tests"
         },
         "check": {
-          "command": "poetry run ruff format --check backend tests"
+          "command": "poetry run ruff format --check rasptherm_backend tests"
         }
       }
     },
@@ -79,23 +79,23 @@
       "outputs": [],
       "options": {
         "command": "poetry run pytest tests",
-        "cwd": "apps/backend"
+        "cwd": "apps/rasptherm-backend"
       }
     },
     "typecheck": {
       "executor": "@nxlv/python:run-commands",
       "outputs": [],
       "options": {
-        "command": "poetry run mypy --strict backend tests",
-        "cwd": "apps/backend"
+        "command": "poetry run mypy --strict rasptherm_backend tests",
+        "cwd": "apps/rasptherm-backend"
       }
     },
     "serve": {
       "executor": "@nxlv/python:run-commands",
       "outputs": [],
       "options": {
-        "command": "poetry run uvicorn --env-file .env backend.main:app",
-        "cwd": "apps/backend"
+        "command": "poetry run uvicorn --env-file .env rasptherm_backend.main:app",
+        "cwd": "apps/rasptherm-backend"
       }
     }
   },

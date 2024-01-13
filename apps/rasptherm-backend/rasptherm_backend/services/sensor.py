@@ -5,8 +5,8 @@ from fastapi import Depends
 from rasptherm_sensor.client import non_ssl_sensor_connection
 from rasptherm_sensor.types import SensorReadout
 
-from backend.models.sensor import ReadSensorModel
-from backend.services.settings import Settings, get_settings
+from rasptherm_backend.models.sensor import ReadSensorModel
+from rasptherm_backend.services.settings import Settings, get_settings
 
 
 class Sensor(Protocol):
