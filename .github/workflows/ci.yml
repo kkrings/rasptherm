@@ -22,6 +22,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - uses: nrwl/nx-set-shas@v4
+      - run: npx nx format:check
       - run: npx nx affected -t install
-      - run: npx nx affected -t format -c check
+      - run: npx nx affected -t format --check
       - run: npx nx affected -t lint,typecheck,test

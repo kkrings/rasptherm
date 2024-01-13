@@ -50,11 +50,6 @@
       "options": {
         "command": "poetry run ruff check rasptherm_backend tests",
         "cwd": "apps/rasptherm-backend"
-      },
-      "configurations": {
-        "fix": {
-          "command": "poetry run ruff check --fix rasptherm_backend tests"
-        }
       }
     },
     "format": {
@@ -62,14 +57,6 @@
       "options": {
         "command": "poetry run ruff format rasptherm_backend tests",
         "cwd": "apps/rasptherm-backend"
-      },
-      "configurations": {
-        "write": {
-          "command": "poetry run ruff format rasptherm_backend tests"
-        },
-        "check": {
-          "command": "poetry run ruff format --check rasptherm_backend tests"
-        }
       }
     },
     "test": {

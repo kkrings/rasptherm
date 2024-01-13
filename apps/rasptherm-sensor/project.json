@@ -50,11 +50,6 @@
       "options": {
         "command": "poetry run ruff check rasptherm_sensor tests",
         "cwd": "apps/rasptherm-sensor"
-      },
-      "configurations": {
-        "fix": {
-          "command": "poetry run ruff check --fix rasptherm_sensor tests"
-        }
       }
     },
     "format": {
@@ -62,14 +57,6 @@
       "options": {
         "command": "poetry run ruff format rasptherm_sensor tests",
         "cwd": "apps/rasptherm-sensor"
-      },
-      "configurations": {
-        "write": {
-          "command": "poetry run ruff format rasptherm_sensor tests"
-        },
-        "check": {
-          "command": "poetry run ruff format --check rasptherm_sensor tests"
-        }
       }
     },
     "test": {
