@@ -22,9 +22,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
         "fix": false
       },
@@ -35,8 +33,6 @@
       }
     }
   },
-  "implicitDependencies": [
-    "rasptherm"
-  ],
+  "implicitDependencies": ["rasptherm"],
   "tags": []
 }

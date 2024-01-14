@@ -4,7 +4,7 @@ export default {
     return [
       `nx format:write --files=${files}`,
       `nx affected -t format --files=${files}`,
-      `nx affected -t lint --fix --files=${files}`
+      `nx affected -t lint --fix --files=${files}`,
     ];
-  }
-}
+  },
+};

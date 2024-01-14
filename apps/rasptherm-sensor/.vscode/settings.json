@@ -1,18 +1,10 @@
 {
-    "python.defaultInterpreterPath": ".venv/bin/python",
-    "mypy-type-checker.path": [
-        ".venv/bin/mypy"
-    ],
-    "mypy-type-checker.args": [
-        "--strict"
-    ],
-    "mypy-type-checker.ignorePatterns": [
-        "**/*_pb2*"
-    ],
-    "ruff.path": [
-        ".venv/bin/ruff"
-    ],
-    "[python]": {
-        "editor.defaultFormatter": "charliermarsh.ruff"
-    }
+  "python.defaultInterpreterPath": ".venv/bin/python",
+  "mypy-type-checker.path": [".venv/bin/mypy"],
+  "mypy-type-checker.args": ["--strict"],
+  "mypy-type-checker.ignorePatterns": ["**/*_pb2*"],
+  "ruff.path": [".venv/bin/ruff"],
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  }
 }
