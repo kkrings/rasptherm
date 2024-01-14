@@ -7,12 +7,16 @@
     "prepare": "is-ci || husky install"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/icons-material": "^5.15.4",
+    "@mui/material": "^5.15.4",
     "@swc/helpers": "~0.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@nxlv/python": "^17.0.0",
     "@nx/cypress": "17.2.8",
     "@nx/eslint": "17.2.8",
     "@nx/eslint-plugin": "17.2.8",
@@ -20,6 +24,7 @@
     "@nx/react": "17.2.8",
     "@nx/vite": "17.2.8",
     "@nx/workspace": "17.2.8",
+    "@nxlv/python": "^17.0.0",
     "@swc-node/register": "~1.6.7",
     "@swc/cli": "~0.1.62",
     "@swc/core": "~1.3.85",

@@ -1,13 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
-
-import NxWelcome from './nx-welcome';
+import { CssBaseline, Typography } from '@mui/material';
 
 export function App() {
   return (
-    <div>
-      <NxWelcome title="rasptherm" />
-    </div>
+    <>
+      <CssBaseline />
+      <Typography variant="h1">Welcome rasptherm</Typography>
+    </>
   );
 }
 
