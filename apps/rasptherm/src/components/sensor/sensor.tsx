@@ -13,6 +13,7 @@ type SensorProps = {
   sensorReadoutDatetime: Date;
   sensorReadoutTemperature: number;
   sensorReadoutHumidity: number;
+  onSensorReadoutRefresh: () => void;
 };
 
 function Temperature({ value }: { value: number }) {
@@ -42,7 +43,12 @@ function Sensor(props: SensorProps) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button startIcon={<RefreshIcon />}>Refresh</Button>
+        <Button
+          startIcon={<RefreshIcon />}
+          onClick={props.onSensorReadoutRefresh}
+        >
+          Refresh
+        </Button>
       </CardActions>
     </Card>
   );
