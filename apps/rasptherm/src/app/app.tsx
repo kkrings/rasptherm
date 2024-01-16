@@ -13,7 +13,7 @@ export function App() {
           <Grid item xs={12}>
             <Sensor
               sensorLocation="Bedroom"
-              sensorReadoutDatetime={sensorReadout.executedAt}
+              sensorReadoutDatetime={new Date(sensorReadout.executedAt)}
               sensorReadoutTemperature={sensorReadout.temperature}
               sensorReadoutHumidity={sensorReadout.humidity}
               onSensorReadoutRefresh={refreshSensorReadout}

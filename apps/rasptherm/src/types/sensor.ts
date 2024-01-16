@@ -1,5 +1,5 @@
 export type SensorReadout = {
-  executedAt: Date;
+  executedAt: string;
   temperature: number;
   humidity: number;
 };

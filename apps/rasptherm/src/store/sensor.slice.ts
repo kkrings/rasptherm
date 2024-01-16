@@ -11,7 +11,7 @@ export type SensorState = {
 
 const initialSensorState: SensorState = {
   readout: {
-    executedAt: new Date(),
+    executedAt: new Date().toISOString(),
     temperature: 0.0,
     humidity: 0.0,
   },
@@ -21,7 +21,7 @@ const initialSensorState: SensorState = {
 
 export const readSensor = createAsyncThunk('sensor/read', async () => {
   const sensorReadout: SensorReadout = {
-    executedAt: new Date(),
+    executedAt: new Date().toISOString(),
     temperature: 21.0,
     humidity: 60.0,
   };
