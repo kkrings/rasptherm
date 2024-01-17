@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RaspthermClient } from '../client';
 import { SensorReadout } from '../types/sensor';
 
 export const SENSOR_FEATURE_KEY = 'sensor';
@@ -20,13 +21,19 @@ const initialSensorState: SensorState = {
 };
 
 export const readSensor = createAsyncThunk('sensor/read', async () => {
+  const client = new RaspthermClient({
+    BASE: 'http://localhost:8000',
+  });
+
+  const readout = await client.sensor.readSensorSensorReadGet();
+
   const sensorReadout: SensorReadout = {
     executedAt: new Date().toISOString(),
-    temperature: 21.0,
-    humidity: 60.0,
+    temperature: readout.temperature_degree_celsius,
+    humidity: readout.relative_humidity_percent,
   };
 
-  return Promise.resolve(sensorReadout);
+  return sensorReadout;
 });
 
 const sensorSlice = createSlice({
