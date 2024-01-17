@@ -4,6 +4,13 @@
   "sourceRoot": "apps/rasptherm/src",
   "projectType": "application",
   "targets": {
+    "client": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "openapi --input http://localhost:8000/openapi.json --output ./src/client --name RaspthermClient --useOptions --useUnionTypes",
+        "cwd": "apps/rasptherm"
+      }
+    },
     "build": {
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
