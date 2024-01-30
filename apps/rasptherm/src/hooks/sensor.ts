@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { readSensor } from '../store/sensor.slice';
 import { SensorReadout } from '../types/sensor';
@@ -16,6 +16,17 @@ export function useSensor(): UseSensor {
     () => dispatch(readSensor()),
     [dispatch]
   );
+
+  useEffect(() => {
+    refreshSensorReadout();
+
+    const sensorReadoutRefreshInterval = setInterval(
+      () => refreshSensorReadout(),
+      6e4
+    );
+
+    return () => clearInterval(sensorReadoutRefreshInterval);
+  }, [refreshSensorReadout]);
 
   return { sensorReadout, refreshSensorReadout };
 }
