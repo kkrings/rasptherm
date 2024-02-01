@@ -3,10 +3,10 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { readSensor } from '../store/sensor.slice';
 import { SensorReadout } from '../types/sensor';
 
-type UseSensor = {
+interface UseSensor {
   sensorReadout: SensorReadout;
   refreshSensorReadout: () => void;
-};
+}
 
 export function useSensor(): UseSensor {
   const dispatch = useAppDispatch();

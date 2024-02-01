@@ -8,13 +8,13 @@ import {
 } from '@mui/material';
 import { Refresh as RefreshIcon } from '@mui/icons-material';
 
-type SensorProps = {
+interface SensorProps {
   sensorLocation: string;
   sensorReadoutDatetime: Date;
   sensorReadoutTemperature: number;
   sensorReadoutHumidity: number;
   onSensorReadoutRefresh: () => void;
-};
+}
 
 function Temperature({ value }: { value: number }) {
   return <span>{value.toFixed(2)}&#x202f;&#x2103;</span>;

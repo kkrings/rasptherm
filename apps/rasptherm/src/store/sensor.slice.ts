@@ -4,11 +4,11 @@ import { SensorReadout } from '../types/sensor';
 
 export const SENSOR_FEATURE_KEY = 'sensor';
 
-export type SensorState = {
+export interface SensorState {
   readout: SensorReadout;
   status: 'not loaded' | 'loading' | 'loaded' | 'error';
   error?: string | null;
-};
+}
 
 const initialSensorState: SensorState = {
   readout: {

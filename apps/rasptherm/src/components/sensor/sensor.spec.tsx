@@ -10,7 +10,7 @@ describe('Sensor', () => {
         sensorReadoutDatetime={new Date()}
         sensorReadoutTemperature={21}
         sensorReadoutHumidity={60}
-        onSensorReadoutRefresh={() => {}}
+        onSensorReadoutRefresh={vi.fn()}
       />
     );
     expect(baseElement).toBeTruthy();
