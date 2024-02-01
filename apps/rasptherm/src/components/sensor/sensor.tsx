@@ -17,11 +17,11 @@ interface SensorProps {
 }
 
 function Temperature({ value }: { value: number }) {
-  return <span>{value.toFixed(2)}&#x202f;&#x2103;</span>;
+  return <span>{value.toFixed(1)}&#x202f;&#x2103;</span>;
 }
 
 function Humidity({ value }: { value: number }) {
-  return <span>{value.toFixed(2)}&#x202f;&#x25;</span>;
+  return <span>{value.toFixed(1)}&#x202f;&#x25;</span>;
 }
 
 function Slash() {
