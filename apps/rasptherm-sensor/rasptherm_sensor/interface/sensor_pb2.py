@@ -12,19 +12,20 @@ from google.protobuf.internal import builder as _builder
 _sym_db = _symbol_database.Default()
 
 
+from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'rasptherm_sensor/interface/sensor.proto\x12!rasptherm_sensor.interface.sensor\"\x13\n\x11ReadSensorRequest\"[\n\x12ReadSensorResponse\x12\"\n\x1atemperature_degree_celsius\x18\x01 \x01(\x01\x12!\n\x19relative_humidity_percent\x18\x02 \x01(\x01\x32\x85\x01\n\x06Sensor\x12{\n\nReadSensor\x12\x34.rasptherm_sensor.interface.sensor.ReadSensorRequest\x1a\x35.rasptherm_sensor.interface.sensor.ReadSensorResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'rasptherm_sensor/interface/sensor.proto\x12!rasptherm_sensor.interface.sensor\x1a\x1fgoogle/protobuf/timestamp.proto\"\x13\n\x11ReadSensorRequest\"\x8c\x01\n\x12ReadSensorResponse\x12\"\n\x1atemperature_degree_celsius\x18\x01 \x01(\x01\x12!\n\x19relative_humidity_percent\x18\x02 \x01(\x01\x12/\n\x0b\x65xecuted_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp2\x85\x01\n\x06Sensor\x12{\n\nReadSensor\x12\x34.rasptherm_sensor.interface.sensor.ReadSensorRequest\x1a\x35.rasptherm_sensor.interface.sensor.ReadSensorResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'rasptherm_sensor.interface.sensor_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
-  _globals['_READSENSORREQUEST']._serialized_start=78
-  _globals['_READSENSORREQUEST']._serialized_end=97
-  _globals['_READSENSORRESPONSE']._serialized_start=99
-  _globals['_READSENSORRESPONSE']._serialized_end=190
-  _globals['_SENSOR']._serialized_start=193
-  _globals['_SENSOR']._serialized_end=326
+  _globals['_READSENSORREQUEST']._serialized_start=111
+  _globals['_READSENSORREQUEST']._serialized_end=130
+  _globals['_READSENSORRESPONSE']._serialized_start=133
+  _globals['_READSENSORRESPONSE']._serialized_end=273
+  _globals['_SENSOR']._serialized_start=276
+  _globals['_SENSOR']._serialized_end=409
 # @@protoc_insertion_point(module_scope)

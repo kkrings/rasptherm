@@ -1,4 +1,5 @@
 import asyncio
+from datetime import datetime, timezone
 
 import board  # type: ignore
 from adafruit_ahtx0 import AHTx0  # type: ignore
@@ -16,4 +17,5 @@ def _readout_ath20_sensor() -> SensorReadout:
     return SensorReadout(
         temperature_degree_celsius=sensor.temperature,
         relative_humidity_percent=sensor.relative_humidity,
+        executed_at_utc=datetime.now(timezone.utc),
     )

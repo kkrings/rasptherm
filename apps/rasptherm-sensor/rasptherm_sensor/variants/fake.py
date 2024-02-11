@@ -1,4 +1,5 @@
 import random
+from datetime import datetime, timezone
 
 from rasptherm_sensor.types import SensorReadout
 
@@ -10,4 +11,8 @@ async def read_fake_sensor() -> SensorReadout:
         0.0, min(random.normalvariate(mu=60.0, sigma=10.0), 100.0)
     )
 
-    return SensorReadout(temperature_degree_celsius, relative_humidity_percent)
+    return SensorReadout(
+        temperature_degree_celsius,
+        relative_humidity_percent,
+        executed_at_utc=datetime.now(timezone.utc),
+    )

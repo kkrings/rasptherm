@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 import pytest
 
 from rasptherm_sensor.client import non_ssl_sensor_connection
@@ -12,7 +14,9 @@ def test_read_sensor(readout: SensorReadout, expected_readout: SensorReadout) ->
 @pytest.fixture
 def expected_readout() -> SensorReadout:
     return SensorReadout(
-        temperature_degree_celsius=21.0, relative_humidity_percent=60.0
+        temperature_degree_celsius=21.0,
+        relative_humidity_percent=60.0,
+        executed_at_utc=datetime.now(timezone.utc),
     )
 
 

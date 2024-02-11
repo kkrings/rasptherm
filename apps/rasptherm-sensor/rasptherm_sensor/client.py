@@ -1,5 +1,6 @@
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from datetime import timezone
 
 import grpc.aio  # type: ignore
 
@@ -20,6 +21,7 @@ class SensorClient:
         return SensorReadout(
             temperature_degree_celsius=response.temperature_degree_celsius,
             relative_humidity_percent=response.relative_humidity_percent,
+            executed_at_utc=response.executed_at.ToDatetime(timezone.utc),
         )
 
 
