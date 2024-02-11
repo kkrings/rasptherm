@@ -14,7 +14,7 @@ python = ">=3.9"
 
 [tool.poetry.dependencies.fastapi]
 extras = [ "all" ]
-version = "^0.108.0"
+version = "^0.109.2"
 
 [tool.poetry.dependencies.rasptherm-sensor]
 path = "../rasptherm-sensor"
@@ -23,7 +23,7 @@ develop = true
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.8.0"
 pytest = "^7.4.4"
-ruff = "^0.1.9"
+ruff = "^0.2.1"
 pytest-asyncio = "^0.23.3"
 
 [build-system]
