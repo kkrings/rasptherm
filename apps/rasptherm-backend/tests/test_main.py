@@ -11,7 +11,7 @@ from rasptherm_backend.models.metadata import MetadataModel
 def test_read_root(client: TestClient, expected_metadata: MetadataModel) -> None:
     response = client.get("/")
     assert response.status_code == status.HTTP_200_OK
-    assert response.json() == expected_metadata.model_dump(mode="json")
+    assert response.json() == expected_metadata.model_dump(mode="json", by_alias=True)
 
 
 @pytest.fixture

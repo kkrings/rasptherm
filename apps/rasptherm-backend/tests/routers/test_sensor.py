@@ -15,7 +15,7 @@ from rasptherm_backend.utils.dependency import override_dependency
 def test_read_sensor(client: TestClient, expected_readout: ReadSensorModel) -> None:
     response = client.get("/sensor/read")
     assert response.status_code == status.HTTP_200_OK
-    assert response.json() == expected_readout.model_dump(mode="json")
+    assert response.json() == expected_readout.model_dump(mode="json", by_alias=True)
 
 
 class FakeSensor:
