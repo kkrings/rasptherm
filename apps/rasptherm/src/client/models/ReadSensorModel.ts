@@ -3,7 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export type ReadSensorModel = {
-    temperature_degree_celsius: number;
-    relative_humidity_percent: number;
+    temperatureDegreeCelsius: number;
+    relativeHumidityPercent: number;
+    executedAtUtc: string;
 };
 

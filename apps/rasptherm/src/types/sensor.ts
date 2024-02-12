@@ -1,5 +1,5 @@
 export interface SensorReadout {
-  executedAt: string;
-  temperature: number;
-  humidity: number;
+  temperatureDegreeCelsius: number;
+  relativeHumidityPercent: number;
+  executedAtUtc: string;
 }

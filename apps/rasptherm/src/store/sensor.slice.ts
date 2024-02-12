@@ -12,9 +12,9 @@ export interface SensorState {
 
 const initialSensorState: SensorState = {
   readout: {
-    executedAt: new Date().toISOString(),
-    temperature: 0.0,
-    humidity: 0.0,
+    temperatureDegreeCelsius: 0.0,
+    relativeHumidityPercent: 0.0,
+    executedAtUtc: new Date().toISOString(),
   },
   status: 'not loaded',
   error: null,
@@ -28,9 +28,9 @@ export const readSensor = createAsyncThunk('sensor/read', async () => {
   const readout = await client.sensor.readSensorSensorReadGet();
 
   const sensorReadout: SensorReadout = {
-    executedAt: new Date().toISOString(),
-    temperature: readout.temperature_degree_celsius,
-    humidity: readout.relative_humidity_percent,
+    temperatureDegreeCelsius: readout.temperatureDegreeCelsius,
+    relativeHumidityPercent: readout.relativeHumidityPercent,
+    executedAtUtc: readout.executedAtUtc,
   };
 
   return sensorReadout;
