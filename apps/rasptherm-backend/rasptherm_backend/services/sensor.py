@@ -27,4 +27,5 @@ async def read_sensor(sensor: Sensor) -> ReadSensorModel:
     return ReadSensorModel(
         temperature_degree_celsius=readout.temperature_degree_celsius,
         relative_humidity_percent=readout.relative_humidity_percent,
+        executed_at_utc=readout.executed_at_utc,
     )

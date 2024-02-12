@@ -1,4 +1,5 @@
 from collections.abc import AsyncIterator, Iterator
+from datetime import datetime, timezone
 
 import pytest
 from fastapi import FastAPI, status
@@ -25,13 +26,16 @@ class FakeSensor:
         return SensorReadout(
             temperature_degree_celsius=self._readout.temperature_degree_celsius,
             relative_humidity_percent=self._readout.relative_humidity_percent,
+            executed_at_utc=self._readout.executed_at_utc,
         )
 
 
 @pytest.fixture
 def expected_readout() -> ReadSensorModel:
     return ReadSensorModel(
-        temperature_degree_celsius=21.0, relative_humidity_percent=60.0
+        temperature_degree_celsius=21.0,
+        relative_humidity_percent=60.0,
+        executed_at_utc=datetime.now(timezone.utc),
     )
 
 
