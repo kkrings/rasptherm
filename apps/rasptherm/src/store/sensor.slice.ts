@@ -22,7 +22,7 @@ const initialSensorState: SensorState = {
 
 export const readSensor = createAsyncThunk('sensor/read', async () => {
   const client = new RaspthermClient({
-    BASE: 'http://localhost:8000',
+    BASE: import.meta.env.VITE_BACKEND_URL,
   });
 
   const readout = await client.sensor.readSensorSensorReadGet();
