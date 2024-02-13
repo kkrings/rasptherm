@@ -33,15 +33,18 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
+cache-dir = "../../.cache/ruff/rasptherm-sensor"
 extend-exclude = ["**/*_pb2*"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I"]
 
 [tool.mypy]
-python_version = "3.9"
+cache_dir = "../../.cache/mypy/rasptherm-sensor"
 exclude = [".*_pb2*"]
+python_version = "3.9"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+cache_dir = "../../.cache/pytest/rasptherm-sensor"
 filterwarnings = ["ignore::DeprecationWarning"]
