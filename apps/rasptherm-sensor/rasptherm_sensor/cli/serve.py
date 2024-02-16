@@ -1,5 +1,7 @@
 from typing import Optional
 
+from grpc.aio import Server  # type: ignore
+
 from rasptherm_sensor.setup import non_ssl_sensor_setup, ssl_sensor_setup
 from rasptherm_sensor.types import ReadSensor
 
@@ -20,10 +22,17 @@ async def serve(
     )
 
     await sensor.start()
-    await sensor.wait_for_termination()
+    await _wait_for_termination(sensor)
 
 
 async def serve_witout_ssl(port: int, variant: ReadSensor) -> None:
     sensor, _ = non_ssl_sensor_setup(read_sensor=variant, port=port)
     await sensor.start()
-    await sensor.wait_for_termination()
+    await _wait_for_termination(sensor)
+
+
+async def _wait_for_termination(sensor: Server) -> None:
+    try:
+        await sensor.wait_for_termination()
+    finally:
+        await sensor.stop(grace=None)
