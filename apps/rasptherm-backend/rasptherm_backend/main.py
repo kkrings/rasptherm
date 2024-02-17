@@ -3,19 +3,21 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from rasptherm_backend.models.metadata import MetadataModel
 from rasptherm_backend.routers.sensor import sensor_router
+from rasptherm_backend.services.cors import get_cors_config
 from rasptherm_backend.services.metadata import get_metadata
 
 app = FastAPI()
 
-origins = ["http://localhost:4200"]
+cors_enabled, cors_allow_origins = get_cors_config()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+if cors_enabled:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=cors_allow_origins,
+        allow_methods=["*"],
+        allow_headers=["*"],
+        allow_credentials=True,
+    )
 
 
 @app.get("/")
