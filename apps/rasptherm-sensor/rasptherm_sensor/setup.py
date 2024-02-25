@@ -10,9 +10,9 @@ from rasptherm_sensor.types import ReadSensor, SensorSetup
 
 def ssl_sensor_setup(
     read_sensor: ReadSensor,
-    ssl_certificate: str,
-    ssl_private_key: str,
-    ssl_root_certificate: Optional[str] = None,
+    ssl_certificate: bytes,
+    ssl_private_key: bytes,
+    ssl_root_certificate: Optional[bytes] = None,
     port: int = 0,
 ) -> SensorSetup:
     sensor = _create_sensor(read_sensor)

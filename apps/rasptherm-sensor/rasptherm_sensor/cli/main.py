@@ -1,5 +1,5 @@
 import asyncio
-from typing import Optional, TextIO
+from typing import BinaryIO, Optional
 
 import click
 
@@ -23,15 +23,15 @@ def protoc() -> None:
 @cli.command()
 @click.option("--port", default=5000, show_default=True)
 @click.option("--variant", type=SENSOR_VARIANT, default="fake", show_default=True)
-@click.option("--ssl-certificate", type=click.File(), required=True)
-@click.option("--ssl-private-key", type=click.File(), required=True)
-@click.option("--ssl-root-certificate", type=click.File())
+@click.option("--ssl-certificate", type=click.File(mode="rb"), required=True)
+@click.option("--ssl-private-key", type=click.File(mode="rb"), required=True)
+@click.option("--ssl-root-certificate", type=click.File(mode="rb"))
 def serve(
     port: int,
     variant: ReadSensor,
-    ssl_certificate: TextIO,
-    ssl_private_key: TextIO,
-    ssl_root_certificate: Optional[TextIO],
+    ssl_certificate: BinaryIO,
+    ssl_private_key: BinaryIO,
+    ssl_root_certificate: Optional[BinaryIO],
 ) -> None:
     serve_coroutine = _serve(
         port,

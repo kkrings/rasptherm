@@ -9,9 +9,9 @@ from rasptherm_sensor.types import ReadSensor
 async def serve(
     port: int,
     variant: ReadSensor,
-    ssl_certificate: str,
-    ssl_private_key: str,
-    ssl_root_certificate: Optional[str] = None,
+    ssl_certificate: bytes,
+    ssl_private_key: bytes,
+    ssl_root_certificate: Optional[bytes] = None,
 ) -> None:
     sensor, _ = ssl_sensor_setup(
         read_sensor=variant,
