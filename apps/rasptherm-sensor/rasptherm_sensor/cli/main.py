@@ -38,7 +38,7 @@ def serve(
         variant,
         ssl_certificate=ssl_certificate.read(),
         ssl_private_key=ssl_private_key.read(),
-        ssl_root_certificate=ssl_certificate.read()
+        ssl_root_certificate=ssl_root_certificate.read()
         if ssl_root_certificate is not None
         else None,
     )
