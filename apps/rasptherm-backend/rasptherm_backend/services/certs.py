@@ -5,9 +5,9 @@ from rasptherm_backend.services.settings import Settings
 
 
 class SensorCerts(NamedTuple):
-    ssl_root_certificate: str | None
-    ssl_private_key: str | None
-    ssl_certificate: str | None
+    ssl_root_certificate: bytes | None
+    ssl_private_key: bytes | None
+    ssl_certificate: bytes | None
 
 
 def read_sensor_certs(settings: Settings) -> SensorCerts:
@@ -32,8 +32,8 @@ def read_sensor_certs(settings: Settings) -> SensorCerts:
     return SensorCerts(ssl_root_certificate, ssl_private_key, ssl_certificate)
 
 
-def _read_file(filepath: Path) -> str:
-    with open(filepath) as filestream:
+def _read_file(filepath: Path) -> bytes:
+    with open(filepath, "rb") as filestream:
         filecontent = filestream.read()
 
     return filecontent

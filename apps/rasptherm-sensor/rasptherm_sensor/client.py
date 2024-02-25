@@ -30,9 +30,9 @@ class SensorClient:
 @asynccontextmanager
 async def ssl_sensor_connection(
     host: str,
-    ssl_root_certificate: str,
-    ssl_private_key: Optional[str] = None,
-    ssl_certificate: Optional[str] = None,
+    ssl_root_certificate: bytes,
+    ssl_private_key: Optional[bytes] = None,
+    ssl_certificate: Optional[bytes] = None,
 ) -> AsyncIterator[SensorClient]:
     channel_credentials = grpc.ssl_channel_credentials(
         root_certificates=ssl_root_certificate,

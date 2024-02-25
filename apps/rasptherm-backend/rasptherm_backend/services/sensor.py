@@ -1,6 +1,7 @@
 from collections.abc import AsyncIterator
 from typing import Annotated, Protocol
 
+from fastapi import Depends
 from rasptherm_sensor.client import non_ssl_sensor_connection, ssl_sensor_connection
 from rasptherm_sensor.types import SensorReadout
 
@@ -15,7 +16,7 @@ class Sensor(Protocol):
 
 
 async def get_sensor(
-    settings: Annotated[Settings, get_settings],
+    settings: Annotated[Settings, Depends(get_settings)],
 ) -> AsyncIterator[Sensor]:
     sensor_certs = read_sensor_certs(settings)
 
