@@ -11,8 +11,7 @@ from rasptherm_backend.services.settings import Settings, get_settings
 
 
 class Sensor(Protocol):
-    async def read_sensor(self) -> SensorReadout:
-        ...
+    async def read_sensor(self) -> SensorReadout: ...
 
 
 async def get_sensor(
