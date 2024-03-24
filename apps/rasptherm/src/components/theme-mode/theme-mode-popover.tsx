@@ -13,10 +13,16 @@ function ThemeModePopover({ children }: ThemeModePopoverProps) {
 
   return (
     <>
-      <IconButton onClick={openPopover} color="inherit" size="large">
+      <IconButton
+        onClick={openPopover}
+        color="inherit"
+        size="large"
+        aria-describedby="theme-mode-popover"
+      >
         <ThemeModeMenuIcon />
       </IconButton>
       <Popover
+        id="theme-mode-popover"
         anchorEl={popoverAnchorEl}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         open={popoverIsOpen}
