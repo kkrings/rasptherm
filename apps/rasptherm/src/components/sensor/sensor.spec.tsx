@@ -1,5 +1,4 @@
-import { render } from '@testing-library/react';
-
+import { render } from '../../test-utils/render';
 import Sensor from './sensor';
 
 describe('Sensor', () => {
@@ -13,6 +12,7 @@ describe('Sensor', () => {
         onSensorReadoutRefresh={vi.fn()}
       />
     );
+
     expect(baseElement).toBeTruthy();
   });
 });

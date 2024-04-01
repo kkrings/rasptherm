@@ -10,6 +10,8 @@
     ]
   },
   "exclude": [
+    "src/test-utils/*.ts",
+    "src/test-utils/*.tsx",
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.tsx",

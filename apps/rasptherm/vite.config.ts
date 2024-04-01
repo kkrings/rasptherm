@@ -37,9 +37,6 @@ export default defineConfig({
 
   test: {
     globals: true,
-    cache: {
-      dir: '../../node_modules/.vitest',
-    },
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
 
@@ -48,5 +45,7 @@ export default defineConfig({
       reportsDirectory: '../../coverage/apps/rasptherm',
       provider: 'v8',
     },
+
+    setupFiles: 'src/test-utils/setup.ts',
   },
 });
