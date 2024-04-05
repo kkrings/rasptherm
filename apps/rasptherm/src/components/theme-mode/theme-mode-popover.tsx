@@ -14,9 +14,14 @@ function ThemeModePopover({ children }: ThemeModePopoverProps) {
   return (
     <>
       <IconButton
+        id="theme-mode-button"
         onClick={openPopover}
         color="inherit"
         size="large"
+        aria-label="Theme mode"
+        aria-haspopup="true"
+        aria-controls={popoverIsOpen ? 'theme-mode-popover' : undefined}
+        aria-expanded={popoverIsOpen ? true : undefined}
         aria-describedby="theme-mode-popover"
       >
         <ThemeModeMenuIcon />
@@ -27,6 +32,7 @@ function ThemeModePopover({ children }: ThemeModePopoverProps) {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         open={popoverIsOpen}
         onClose={closePopover}
+        aria-labelledby="theme-mode-button"
       >
         {children}
       </Popover>
