@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
 import { SensorReadout } from '../types/sensor';

@@ -29,7 +29,7 @@ function ThemeModePopover({ children }: ThemeModePopoverProps) {
       <Popover
         id="theme-mode-popover"
         anchorEl={popoverAnchorEl}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         open={popoverIsOpen}
         onClose={closePopover}
         aria-labelledby="theme-mode-button"
