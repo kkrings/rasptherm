@@ -23,7 +23,7 @@ adafruit-circuitpython-ahtx0 = "^1.0.21"
 mypy = "^1.8.0"
 pytest = "^8.0.0"
 pytest-asyncio = "^0.23.2"
-ruff = "^0.2.1"
+ruff = "^0.3.7"
 
 [tool.poetry.group.stubs.dependencies]
 types-protobuf = "^4.24.0.20240129"
