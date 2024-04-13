@@ -11,8 +11,7 @@ from rasptherm_sensor.types import ReadSensor
 
 
 @click.group()
-def cli() -> None:
-    ...
+def cli() -> None: ...
 
 
 @cli.command()
