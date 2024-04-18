@@ -1,17 +1,14 @@
 from collections.abc import AsyncIterator
-from typing import Annotated, Protocol
+from typing import Annotated
 
 from fastapi import Depends
 from rasptherm_sensor.client import non_ssl_sensor_connection, ssl_sensor_connection
-from rasptherm_sensor.types import SensorReadout
 
 from rasptherm_backend.models.sensor import ReadSensorModel
 from rasptherm_backend.services.certs import read_sensor_certs
 from rasptherm_backend.services.settings import Settings, get_settings
-
-
-class Sensor(Protocol):
-    async def read_sensor(self) -> SensorReadout: ...
+from rasptherm_backend.types.sensor import Sensor
+from rasptherm_backend.utils.sensor import sensor_not_available_handling
 
 
 async def get_sensor(
@@ -34,6 +31,7 @@ async def get_sensor(
         yield sensor
 
 
+@sensor_not_available_handling
 async def read_sensor(sensor: Sensor) -> ReadSensorModel:
     readout = await sensor.read_sensor()
 
