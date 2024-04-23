@@ -4,10 +4,10 @@
   "sourceRoot": "apps/rasptherm/src",
   "projectType": "application",
   "targets": {
-    "client": {
+    "openapi": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "openapi --input http://localhost:8000/openapi.json --output ./src/client --name RaspthermClient --useOptions --useUnionTypes",
+        "command": "rtk-query-codegen-openapi openapi.config.ts",
         "cwd": "apps/rasptherm"
       }
     },

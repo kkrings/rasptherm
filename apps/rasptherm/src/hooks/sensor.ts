@@ -1,32 +1,27 @@
-import { useCallback, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { readSensor } from '../store/sensor.slice';
-import { SensorReadout } from '../types/sensor';
+import {
+  ReadSensorModel,
+  useReadSensorSensorReadGetQuery,
+} from '../store/sensor.api';
 
 interface UseSensor {
-  sensorReadout: SensorReadout;
+  sensorReadout: ReadSensorModel;
   refreshSensorReadout: () => void;
 }
 
 export function useSensor(): UseSensor {
-  const dispatch = useAppDispatch();
-  const sensorReadout = useAppSelector((state) => state.sensor.readout);
-
-  const refreshSensorReadout = useCallback(
-    () => dispatch(readSensor()),
-    [dispatch]
+  const { sensorReadout, refetch } = useReadSensorSensorReadGetQuery(
+    undefined,
+    {
+      pollingInterval: 6e4,
+      selectFromResult: ({ data }) => ({
+        sensorReadout: data ?? {
+          temperatureDegreeCelsius: 0,
+          relativeHumidityPercent: 0,
+          executedAtUtc: new Date().toISOString(),
+        },
+      }),
+    }
   );
 
-  useEffect(() => {
-    refreshSensorReadout();
-
-    const sensorReadoutRefreshInterval = setInterval(
-      () => refreshSensorReadout(),
-      6e4
-    );
-
-    return () => clearInterval(sensorReadoutRefreshInterval);
-  }, [refreshSensorReadout]);
-
-  return { sensorReadout, refreshSensorReadout };
+  return { sensorReadout, refreshSensorReadout: refetch };
 }
