@@ -4,16 +4,19 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Skeleton,
   Typography,
 } from '@mui/material';
 import { Refresh as RefreshIcon } from '@mui/icons-material';
+import { useSensor } from '../../hooks/sensor';
 
 interface SensorProps {
   sensorLocation: string;
-  sensorReadoutDatetime: Date;
-  sensorReadoutTemperature: number;
-  sensorReadoutHumidity: number;
-  onSensorReadoutRefresh: () => void;
+}
+
+interface SensorReadoutProps {
+  temperature: number;
+  humidity: number;
 }
 
 function Temperature({ value }: { value: number }) {
@@ -28,25 +31,45 @@ function Slash() {
   return <span> / </span>;
 }
 
+function SensorReadout({ temperature, humidity }: SensorReadoutProps) {
+  return (
+    <>
+      <Temperature value={temperature} />
+      <Slash />
+      <Humidity value={humidity} />
+    </>
+  );
+}
+
 function Sensor(props: SensorProps) {
+  const { sensorReadout, sensorReadoutIsLoading, readSensor } = useSensor();
+
   return (
     <Card>
       <CardHeader
         title={props.sensorLocation}
-        subheader={props.sensorReadoutDatetime.toLocaleString()}
+        subheader={
+          sensorReadoutIsLoading ? (
+            <Skeleton width="60%" />
+          ) : (
+            new Date(sensorReadout.executedAtUtc).toLocaleString()
+          )
+        }
       />
       <CardContent>
         <Typography variant="h4">
-          <Temperature value={props.sensorReadoutTemperature} />
-          <Slash />
-          <Humidity value={props.sensorReadoutHumidity} />
+          {sensorReadoutIsLoading ? (
+            <Skeleton width="80%" />
+          ) : (
+            <SensorReadout
+              temperature={sensorReadout.temperatureDegreeCelsius}
+              humidity={sensorReadout.relativeHumidityPercent}
+            />
+          )}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button
-          startIcon={<RefreshIcon />}
-          onClick={props.onSensorReadoutRefresh}
-        >
+        <Button startIcon={<RefreshIcon />} onClick={readSensor}>
           Refresh
         </Button>
       </CardActions>

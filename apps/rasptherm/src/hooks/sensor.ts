@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   ReadSensorModel,
   useReadSensorSensorReadGetQuery,
@@ -5,23 +6,31 @@ import {
 
 interface UseSensor {
   sensorReadout: ReadSensorModel;
-  refreshSensorReadout: () => void;
+  sensorReadoutIsLoading: boolean;
+  sensorReadoutIsFetching: boolean;
+  readSensor: () => void;
 }
 
 export function useSensor(): UseSensor {
-  const { sensorReadout, refetch } = useReadSensorSensorReadGetQuery(
-    undefined,
-    {
+  const { data, isLoading, isFetching, refetch } =
+    useReadSensorSensorReadGetQuery(undefined, {
       pollingInterval: 6e4,
-      selectFromResult: ({ data }) => ({
-        sensorReadout: data ?? {
-          temperatureDegreeCelsius: 0,
-          relativeHumidityPercent: 0,
-          executedAtUtc: new Date().toISOString(),
-        },
-      }),
-    }
+    });
+
+  const sensorReadout = useMemo(
+    () =>
+      data ?? {
+        temperatureDegreeCelsius: 0,
+        relativeHumidityPercent: 0,
+        executedAtUtc: new Date().toISOString(),
+      },
+    [data]
   );
 
-  return { sensorReadout, refreshSensorReadout: refetch };
+  return {
+    sensorReadout,
+    sensorReadoutIsLoading: isLoading,
+    sensorReadoutIsFetching: isFetching,
+    readSensor: refetch,
+  };
 }
