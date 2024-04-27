@@ -4,72 +4,14 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  Skeleton,
-  Typography,
 } from '@mui/material';
 import { Refresh as RefreshIcon } from '@mui/icons-material';
 import { useSensor } from '../../hooks/sensor';
+import SensorReadout from './internal/sensor-readout';
+import SensorReadoutExecutedAt from './internal/sensor-readout-executed-at';
 
 interface SensorProps {
   sensorLocation: string;
-}
-
-interface SensorReadoutExecutedAtProps {
-  executedAt: string;
-  loading: boolean;
-}
-
-interface SensorReadoutProps {
-  temperature: number;
-  humidity: number;
-  loading: boolean;
-}
-
-function SensorReadoutExecutedAt(props: SensorReadoutExecutedAtProps) {
-  return props.loading ? (
-    <Skeleton width="60%" />
-  ) : (
-    <span>{new Date(props.executedAt).toLocaleString()}</span>
-  );
-}
-
-function Temperature({ value }: { value: number }) {
-  return <span>{value.toFixed(1)}&#x202f;&#x2103;</span>;
-}
-
-function Humidity({ value }: { value: number }) {
-  return <span>{value.toFixed(1)}&#x202f;&#x25;</span>;
-}
-
-function Slash() {
-  return <span> / </span>;
-}
-
-function SensorReadoutWithoutLoading(
-  props: Omit<SensorReadoutProps, 'loading'>
-) {
-  return (
-    <>
-      <Temperature value={props.temperature} />
-      <Slash />
-      <Humidity value={props.humidity} />
-    </>
-  );
-}
-
-function SensorReadout(props: SensorReadoutProps) {
-  return (
-    <Typography variant="h4">
-      {props.loading ? (
-        <Skeleton width="80%" />
-      ) : (
-        <SensorReadoutWithoutLoading
-          temperature={props.temperature}
-          humidity={props.humidity}
-        />
-      )}
-    </Typography>
-  );
 }
 
 function Sensor(props: SensorProps) {
