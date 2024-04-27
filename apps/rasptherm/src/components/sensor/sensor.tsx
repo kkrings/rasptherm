@@ -14,9 +14,23 @@ interface SensorProps {
   sensorLocation: string;
 }
 
+interface SensorReadoutExecutedAtProps {
+  executedAt: string;
+  loading: boolean;
+}
+
 interface SensorReadoutProps {
   temperature: number;
   humidity: number;
+  loading: boolean;
+}
+
+function SensorReadoutExecutedAt(props: SensorReadoutExecutedAtProps) {
+  return props.loading ? (
+    <Skeleton width="60%" />
+  ) : (
+    <span>{new Date(props.executedAt).toLocaleString()}</span>
+  );
 }
 
 function Temperature({ value }: { value: number }) {
@@ -31,45 +45,65 @@ function Slash() {
   return <span> / </span>;
 }
 
-function SensorReadout({ temperature, humidity }: SensorReadoutProps) {
+function SensorReadoutWithoutLoading(
+  props: Omit<SensorReadoutProps, 'loading'>
+) {
   return (
     <>
-      <Temperature value={temperature} />
+      <Temperature value={props.temperature} />
       <Slash />
-      <Humidity value={humidity} />
+      <Humidity value={props.humidity} />
     </>
   );
 }
 
+function SensorReadout(props: SensorReadoutProps) {
+  return (
+    <Typography variant="h4">
+      {props.loading ? (
+        <Skeleton width="80%" />
+      ) : (
+        <SensorReadoutWithoutLoading
+          temperature={props.temperature}
+          humidity={props.humidity}
+        />
+      )}
+    </Typography>
+  );
+}
+
 function Sensor(props: SensorProps) {
-  const { sensorReadout, sensorReadoutIsLoading, readSensor } = useSensor();
+  const {
+    sensorReadout,
+    sensorReadoutIsLoading,
+    sensorReadoutIsFetching,
+    readSensor,
+  } = useSensor();
 
   return (
     <Card>
       <CardHeader
         title={props.sensorLocation}
         subheader={
-          sensorReadoutIsLoading ? (
-            <Skeleton width="60%" />
-          ) : (
-            new Date(sensorReadout.executedAtUtc).toLocaleString()
-          )
+          <SensorReadoutExecutedAt
+            executedAt={sensorReadout.executedAtUtc}
+            loading={sensorReadoutIsLoading}
+          />
         }
       />
       <CardContent>
-        <Typography variant="h4">
-          {sensorReadoutIsLoading ? (
-            <Skeleton width="80%" />
-          ) : (
-            <SensorReadout
-              temperature={sensorReadout.temperatureDegreeCelsius}
-              humidity={sensorReadout.relativeHumidityPercent}
-            />
-          )}
-        </Typography>
+        <SensorReadout
+          temperature={sensorReadout.temperatureDegreeCelsius}
+          humidity={sensorReadout.relativeHumidityPercent}
+          loading={sensorReadoutIsLoading}
+        />
       </CardContent>
       <CardActions>
-        <Button startIcon={<RefreshIcon />} onClick={readSensor}>
+        <Button
+          startIcon={<RefreshIcon />}
+          onClick={readSensor}
+          disabled={sensorReadoutIsFetching}
+        >
           Refresh
         </Button>
       </CardActions>
