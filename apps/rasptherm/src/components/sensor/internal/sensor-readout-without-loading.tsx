@@ -1,16 +1,16 @@
 import { SensorReadoutProps } from './sensor-readout';
-import Humidity from './humidity';
+import SensorReadoutHumidity from './sensor-readout-humidity';
+import SensorReadoutTemperature from './sensor-readout-temperature';
 import Slash from './slash';
-import Temperature from './temperature';
 
 function SensorReadoutWithoutLoading(
   props: Omit<SensorReadoutProps, 'loading'>
 ) {
   return (
     <>
-      <Temperature value={props.temperature} />
+      <SensorReadoutTemperature value={props.temperature} />
       <Slash />
-      <Humidity value={props.humidity} />
+      <SensorReadoutHumidity value={props.humidity} />
     </>
   );
 }
