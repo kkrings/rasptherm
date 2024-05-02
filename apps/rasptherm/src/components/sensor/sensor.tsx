@@ -28,15 +28,15 @@ function Sensor(props: SensorProps) {
         title={props.sensorLocation}
         subheader={
           <SensorReadoutExecutedAt
-            executedAt={sensorReadout.executedAtUtc}
+            executedAt={sensorReadout?.executedAtUtc ?? null}
             loading={sensorReadoutIsLoading}
           />
         }
       />
       <CardContent>
         <SensorReadout
-          temperature={sensorReadout.temperatureDegreeCelsius}
-          humidity={sensorReadout.relativeHumidityPercent}
+          temperature={sensorReadout?.temperatureDegreeCelsius ?? null}
+          humidity={sensorReadout?.relativeHumidityPercent ?? null}
           loading={sensorReadoutIsLoading}
         />
       </CardContent>

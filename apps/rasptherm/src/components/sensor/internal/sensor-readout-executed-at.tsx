@@ -1,15 +1,17 @@
-import { Skeleton } from '@mui/material';
+import WithLoading from './with-loading';
 
 interface SensorReadoutExecutedAtProps {
-  executedAt: string;
-  loading: boolean;
+  executedAt: string | null;
+  loading?: boolean;
 }
 
 function SensorReadoutExecutedAt(props: SensorReadoutExecutedAtProps) {
-  return props.loading ? (
-    <Skeleton width="60%" />
-  ) : (
-    <span>{new Date(props.executedAt).toLocaleString()}</span>
+  const executedAt = new Date(props?.executedAt ?? '').toLocaleString();
+
+  return (
+    <WithLoading loading={props.loading} width="158px">
+      <span>{executedAt !== 'Invalid Date' ? executedAt : '...'}</span>
+    </WithLoading>
   );
 }
 

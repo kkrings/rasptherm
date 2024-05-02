@@ -1,11 +1,10 @@
-import { useMemo } from 'react';
 import {
   ReadSensorModel,
   useReadSensorSensorReadGetQuery,
 } from '../store/sensor.api';
 
 interface UseSensor {
-  sensorReadout: ReadSensorModel;
+  sensorReadout?: ReadSensorModel;
   sensorReadoutIsLoading: boolean;
   sensorReadoutIsFetching: boolean;
   readSensor: () => void;
@@ -17,18 +16,8 @@ export function useSensor(): UseSensor {
       pollingInterval: 6e4,
     });
 
-  const sensorReadout = useMemo(
-    () =>
-      data ?? {
-        temperatureDegreeCelsius: 0,
-        relativeHumidityPercent: 0,
-        executedAtUtc: new Date().toISOString(),
-      },
-    [data]
-  );
-
   return {
-    sensorReadout,
+    sensorReadout: data,
     sensorReadoutIsLoading: isLoading,
     sensorReadoutIsFetching: isFetching,
     readSensor: refetch,
