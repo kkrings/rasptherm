@@ -62,5 +62,8 @@
     "vite": "^5.0.0",
     "vitest": "1.4.0"
   },
+  "overrides": {
+    "@testing-library/dom": "^9.0.0"
+  },
   "private": true
 }
