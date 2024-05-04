@@ -1,17 +1,17 @@
 import '@testing-library/jest-dom';
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
-import { SensorReadout } from '../types/sensor';
+import { ReadSensorModel } from '../store/sensor.api';
 
 const backendUrl = 'http://localhost:8000';
 
-const sensorReadout: SensorReadout = {
+const sensorReadout: ReadSensorModel = {
   temperatureDegreeCelsius: 21,
   relativeHumidityPercent: 60,
   executedAtUtc: new Date().toISOString(),
 };
 
-const server = setupServer(
+export const server = setupServer(
   http.get(`${backendUrl}/sensor/read`, () => {
     return HttpResponse.json({ ...sensorReadout });
   })
