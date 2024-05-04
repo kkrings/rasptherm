@@ -13,7 +13,11 @@ interface SensorReadoutProps {
 function SensorReadout(props: SensorReadoutProps) {
   return (
     <Typography variant="h4">
-      <WithLoading loading={props.loading} width="252px">
+      <WithLoading
+        visible={props.loading || !props.temperature || !props.humidity}
+        pulse={props.loading}
+        width="252px"
+      >
         <SensorReadoutTemperature value={props.temperature} />
         <Slash />
         <SensorReadoutHumidity value={props.humidity} />

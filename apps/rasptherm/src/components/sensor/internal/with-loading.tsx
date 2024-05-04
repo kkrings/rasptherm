@@ -3,13 +3,18 @@ import { Skeleton } from '@mui/material';
 
 interface WithLoadingProps {
   children: ReactNode;
-  loading?: boolean;
+  visible?: boolean;
+  pulse?: boolean;
   width?: string | number;
 }
 
-function WithLoading({ children, loading, width }: WithLoadingProps) {
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return loading ? <Skeleton width={width} /> : <>{children}</>;
+function WithLoading({ children, visible, pulse, width }: WithLoadingProps) {
+  return visible ? (
+    <Skeleton width={width} animation={pulse ? 'pulse' : false} />
+  ) : (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>{children}</>
+  );
 }
 
 export default WithLoading;

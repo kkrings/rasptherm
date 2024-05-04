@@ -6,11 +6,13 @@ interface SensorReadoutExecutedAtProps {
 }
 
 function SensorReadoutExecutedAt(props: SensorReadoutExecutedAtProps) {
-  const executedAt = new Date(props?.executedAt ?? '').toLocaleString();
-
   return (
-    <WithLoading loading={props.loading} width="158px">
-      <span>{executedAt !== 'Invalid Date' ? executedAt : '...'}</span>
+    <WithLoading
+      visible={props.loading || !props.executedAt}
+      pulse={props.loading}
+      width="158px"
+    >
+      <span>{new Date(props?.executedAt ?? '').toLocaleString()}</span>
     </WithLoading>
   );
 }
