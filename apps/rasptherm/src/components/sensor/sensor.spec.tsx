@@ -1,31 +1,25 @@
 import { screen } from '@testing-library/react';
-import { HttpResponse, http } from 'msw';
-import { ReadSensorModel } from '../../store/sensor.api';
 import { render } from '../../test-utils/render';
-import { server } from '../../test-utils/setup';
 import Sensor from './sensor';
 
 describe('Sensor', () => {
-  it('should render sensor readout', async () => {
-    const sensorReadoutExecutedAt = new Date();
-
-    const sensorReadout: ReadSensorModel = {
-      temperatureDegreeCelsius: 20,
-      relativeHumidityPercent: 60,
-      executedAtUtc: sensorReadoutExecutedAt.toISOString(),
-    };
-
-    server.use(
-      http.get(`${import.meta.env.VITE_BACKEND_URL}/sensor/read`, () => {
-        return HttpResponse.json({ ...sensorReadout });
-      })
-    );
-
+  it('should render sensor location', async () => {
     render(<Sensor sensorLocation="Some location" />);
-
     await screen.findByText('Some location');
-    await screen.findByText(sensorReadoutExecutedAt.toLocaleString());
-    await screen.findByText(/20.0/);
+  });
+
+  it('should render sensor readout timestamp', async () => {
+    render(<Sensor sensorLocation="Some location" />);
+    await screen.findByText(new Date('2024-01-22').toLocaleString());
+  });
+
+  it('should render sensor temperature', async () => {
+    render(<Sensor sensorLocation="Some location" />);
+    await screen.findByText(/21.0/);
+  });
+
+  it('should render sensor humidity', async () => {
+    render(<Sensor sensorLocation="Some location" />);
     await screen.findByText(/60.0/);
   });
 });
