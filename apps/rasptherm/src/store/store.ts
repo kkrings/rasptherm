@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { ERROR_FEATURE_KEY, errorReducer } from './error.slice';
 import { THEME_FEATURE_KEY, themeReducer } from './theme.slice';
 import { sensorApi } from './sensor.api';
 
 const rootReducer = combineReducers({
   [sensorApi.reducerPath]: sensorApi.reducer,
+  [ERROR_FEATURE_KEY]: errorReducer,
   [THEME_FEATURE_KEY]: themeReducer,
 });
 
