@@ -13,7 +13,7 @@ cors_enabled, cors_allow_origins = get_cors_config()
 if cors_enabled:
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=cors_allow_origins,
         allow_methods=["*"],
         allow_headers=["*"],
         allow_credentials=True,
