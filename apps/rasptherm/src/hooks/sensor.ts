@@ -4,8 +4,7 @@ import {
   useReadSensorSensorReadGetQuery,
 } from '../store/sensor.api';
 import { useAppDispatch } from '../store/hooks';
-import { setLatestError } from '../store/error.slice';
-import { getErrorMessage } from '../utils/error';
+import { dismissLatestError, setLatestError } from '../store/error.slice';
 
 interface UseSensor {
   sensorReadout?: ReadSensorModel;
@@ -23,14 +22,14 @@ export function useSensor(): UseSensor {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(
-      setLatestError(
-        error
-          ? { title: 'Sensor readout', description: getErrorMessage(error) }
-          : null
-      )
-    );
+    dispatch(setLatestError(error));
   }, [dispatch, error]);
+
+  useEffect(() => {
+    if (isLoading) {
+      dispatch(dismissLatestError());
+    }
+  }, [isLoading, dispatch]);
 
   return {
     sensorReadout: data,
