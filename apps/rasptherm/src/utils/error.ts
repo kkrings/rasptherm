@@ -20,4 +20,5 @@ export const getErrorMessage = (
     ? error.data.detail.msg
     : genericErrorMessage;
 
-const genericErrorMessage = 'Something went wrong. Please try again later.';
+export const genericErrorMessage =
+  'Something went wrong. Please try again later.';

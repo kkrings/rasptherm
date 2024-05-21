@@ -11,7 +11,7 @@ const sensorReadout: ReadSensorModel = {
   executedAtUtc: new Date('2024-01-22').toISOString(),
 };
 
-const server = setupServer(
+export const server = setupServer(
   http.get(`${backendUrl}/sensor/read`, () => {
     return HttpResponse.json({ ...sensorReadout });
   })
