@@ -21,6 +21,8 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm ci
+        env:
+          HUSKY: 0
       - uses: nrwl/nx-set-shas@v4
       - run: npx nx format:check
       - run: npx nx affected -t install

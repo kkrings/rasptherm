@@ -4,7 +4,7 @@
   "description": "Raspberry-Pi-based thermometer",
   "license": "GPL-3.0-only",
   "scripts": {
-    "prepare": "is-ci || husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -52,7 +52,6 @@
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "husky": "^9.0.10",
-    "is-ci": "^3.0.1",
     "jsdom": "~22.1.0",
     "lint-staged": "^15.2.0",
     "msw": "^2.2.13",
@@ -67,4 +66,3 @@
   },
   "private": true
 }
-
