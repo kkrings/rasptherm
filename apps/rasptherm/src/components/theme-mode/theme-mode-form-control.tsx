@@ -19,11 +19,11 @@ function ThemeModeFormControl(props: ThemeModeFormControlProps) {
 
   return (
     <FormControl sx={{ p: '0.75rem' }}>
-      <FormLabel id="theme-mode-form-label">Mode</FormLabel>
+      <FormLabel htmlFor="theme-mode-radio-group">Mode</FormLabel>
       <RadioGroup
+        id="theme-mode-radio-group"
         value={props.mode}
         onChange={handleChange}
-        aria-labelledby="theme-mode-form-label"
       >
         <FormControlLabel control={<Radio />} value="light" label="Light" />
         <FormControlLabel control={<Radio />} value="dark" label="Dark" />
