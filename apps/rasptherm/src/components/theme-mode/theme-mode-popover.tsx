@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IconButton, Popover } from '@mui/material';
-import ThemeModeMenuIcon from '@mui/icons-material/DarkMode';
 import { usePopoverAnchor } from '../../hooks/popover';
+import ThemeModeMenuIcon from './theme-mode-menu-icon';
 
 interface ThemeModePopoverProps {
   children: React.ReactNode;
