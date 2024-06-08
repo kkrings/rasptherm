@@ -74,7 +74,7 @@
     "serve": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run uvicorn --env-file .env rasptherm_backend.main:app",
+        "command": "poetry run uvicorn rasptherm_backend.main:app",
         "cwd": "apps/rasptherm-backend"
       }
     }
