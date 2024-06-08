@@ -20,11 +20,31 @@ def protoc() -> None:
 
 
 @cli.command()
-@click.option("--port", default=5000, show_default=True)
-@click.option("--variant", type=SENSOR_VARIANT, default="fake", show_default=True)
-@click.option("--ssl-certificate", type=click.File(mode="rb"), required=True)
-@click.option("--ssl-private-key", type=click.File(mode="rb"), required=True)
-@click.option("--ssl-root-certificate", type=click.File(mode="rb"))
+@click.option(
+    "--port",
+    default=5000,
+    show_default=True,
+)
+@click.option(
+    "--variant",
+    type=SENSOR_VARIANT,
+    default="fake-random",
+    show_default=True,
+)
+@click.option(
+    "--ssl-certificate",
+    type=click.File(mode="rb"),
+    required=True,
+)
+@click.option(
+    "--ssl-private-key",
+    type=click.File(mode="rb"),
+    required=True,
+)
+@click.option(
+    "--ssl-root-certificate",
+    type=click.File(mode="rb"),
+)
 def serve(
     port: int,
     variant: ReadSensor,
@@ -46,7 +66,16 @@ def serve(
 
 
 @cli.command()
-@click.option("--port", default=5000, show_default=True)
-@click.option("--variant", type=SENSOR_VARIANT, default="fake", show_default=True)
+@click.option(
+    "--port",
+    default=5000,
+    show_default=True,
+)
+@click.option(
+    "--variant",
+    type=SENSOR_VARIANT,
+    default="fake-random",
+    show_default=True,
+)
 def serve_without_ssl(port: int, variant: ReadSensor) -> None:
     asyncio.run(_serve_without_ssl(port, variant))

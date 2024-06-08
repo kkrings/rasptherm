@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  main:
+  test:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -33,3 +33,14 @@ jobs:
           BACKEND_CORS_ENABLED: 'False'
           BACKEND_CORS_ALLOW_ORIGINS: '[]'
           BACKEND_SENSOR_HOST: 'https://www.example.com/'
+      - uses: cypress-io/github-action@v6
+        with:
+          start: |
+            npx nx run rasptherm-sensor:cli -- serve-without-ssl --variant fake-static
+            npx nx run rasptherm-backend:serve
+          command: npx nx run rasptherm-e2e:e2e:ci
+        env:
+          BACKEND_CORS_ENABLED: 'True'
+          BACKEND_CORS_ALLOW_ORIGINS: '[http://localhost:4200]'
+          BACKEND_SENSOR_HOST: 'localhost:5000'
+          VITE_BACKEND_URL: http://localhost:8000
