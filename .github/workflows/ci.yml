@@ -35,12 +35,13 @@ jobs:
           BACKEND_SENSOR_HOST: 'https://www.example.com/'
       - uses: cypress-io/github-action@v6
         with:
+          install: false
           start: |
             npx nx run rasptherm-sensor:cli -- serve-without-ssl --variant fake-static
             npx nx run rasptherm-backend:serve
           command: npx nx run rasptherm-e2e:e2e:ci
         env:
           BACKEND_CORS_ENABLED: 'True'
-          BACKEND_CORS_ALLOW_ORIGINS: '[http://localhost:4200]'
+          BACKEND_CORS_ALLOW_ORIGINS: '["http://localhost:4200"]'
           BACKEND_SENSOR_HOST: 'localhost:5000'
           VITE_BACKEND_URL: http://localhost:8000
