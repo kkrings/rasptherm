@@ -29,6 +29,7 @@ export default defineConfig({
 
   build: {
     outDir: '../../dist/apps/rasptherm',
+    emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,

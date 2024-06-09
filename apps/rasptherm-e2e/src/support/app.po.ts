@@ -1,1 +1,1 @@
-export const getSensor = () => cy.contains(/Bedroom/).parent('.MuiCard-root');
+export const getSensor = () => cy.contains('.MuiCard-root', /Bedroom/);
