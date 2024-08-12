@@ -6,4 +6,8 @@ describe('rasptherm-e2e', () => {
   it('should display temperature', () => {
     getSensor().contains(/21.0/);
   });
+
+  it('should display humidity', () => {
+    getSensor().contains(/60.0/);
+  });
 });
