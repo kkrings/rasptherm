@@ -1,52 +1,42 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
-export default defineConfig({
+export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/apps/rasptherm',
-
   server: {
     port: 4200,
-    host: 'localhost',
-    fs: {
-      allow: ['../../node_modules/@fontsource/roboto/files'],
-    },
+    host: '127.0.0.1',
   },
-
   preview: {
     port: 4300,
-    host: 'localhost',
+    host: '127.0.0.1',
   },
-
-  plugins: [react(), nxViteTsPaths()],
-
+  plugins: [react()],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [ nxViteTsPaths() ],
   // },
-
   build: {
-    outDir: '../../dist/apps/rasptherm',
+    outDir: './dist',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
     },
   },
-
   test: {
+    name: '@rasptherm/rasptherm',
+    watch: false,
     globals: true,
     environment: 'jsdom',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-
+    include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/apps/rasptherm',
-      provider: 'v8',
+      reportsDirectory: './test-output/vitest/coverage',
+      provider: 'v8' as const,
     },
-
     setupFiles: 'src/test-utils/setup.ts',
   },
-});
+}));

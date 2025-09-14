@@ -3,7 +3,7 @@ import { ThemeMode } from '../types/theme';
 
 export const THEME_FEATURE_KEY = 'theme';
 
-interface ThemeState {
+export interface ThemeState {
   mode: ThemeMode;
 }
 

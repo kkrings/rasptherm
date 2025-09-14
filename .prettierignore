@@ -2,9 +2,7 @@
 /dist
 /coverage
 /.nx/cache
-.mypy_cache
-.pytest_cache
-.ruff_cache
-.venv
-apps/rasptherm/src/client
 /.nx/workspace-data
+/.cache
+/.venv
+/apps/rasptherm/src/client

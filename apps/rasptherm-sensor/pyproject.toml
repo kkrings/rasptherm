@@ -1,50 +1,53 @@
-[tool.poetry]
+[project]
 name = "rasptherm-sensor"
 version = "0.2.0"
 description = "Temperature and humidity sensor abstraction"
+requires-python = ">=3.9,<4"
 authors = []
 license = "GPL-3.0-only"
 readme = "README.md"
+dependencies = [
+  "adafruit-circuitpython-ahtx0>=1.0.27,<2",
+  "click>=8.1.8,<9",
+  "grpcio>=1.74.0,<2",
+  "grpcio-tools>=1.74.0,<2",
+]
 
-[[tool.poetry.packages]]
-include = "rasptherm_sensor"
+[dependency-groups]
+dev = [
+  "mypy>=1.17.1,<2",
+  "pytest>=8.4.2,<9",
+  "pytest-asyncio>=1.1.0,<2",
+  "ruff>=0.12.12,<0.13",
+]
 
-[tool.poetry.scripts]
+stubs = [
+  "types-protobuf>=6.30.2.20250822,<7",
+]
+
+[project.scripts]
 rasptherm-sensor = "rasptherm_sensor.cli.main:cli"
 
-[tool.poetry.dependencies]
-python = ">=3.9"
-click = "^8.1.7"
-grpcio = "^1.60.0"
-grpcio-tools = "^1.60.0"
-adafruit-circuitpython-ahtx0 = "^1.0.21"
-
-[tool.poetry.group.dev.dependencies]
-mypy = "^1.8.0"
-pytest = "^8.0.0"
-pytest-asyncio = "^0.23.2"
-ruff = "^0.5.7"
-
-[tool.poetry.group.stubs.dependencies]
-types-protobuf = "^5.26.0.20240422"
-
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.8.9,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.mypy]
+cache_dir = ".cache/mypy"
+exclude = [".*_pb2*"]
+python_version = "3.9"
+strict = true
 
 [tool.ruff]
-cache-dir = "../../.cache/ruff/rasptherm-sensor"
+cache-dir = ".cache/ruff"
 extend-exclude = ["**/*_pb2*"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I"]
 
-[tool.mypy]
-cache_dir = "../../.cache/mypy/rasptherm-sensor"
-exclude = [".*_pb2*"]
-python_version = "3.9"
-
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
-cache_dir = "../../.cache/pytest/rasptherm-sensor"
-filterwarnings = ["ignore::DeprecationWarning"]
+cache_dir = ".cache/pytest"
+
+[tool.uv]
+cache-dir = ".cache/uv"

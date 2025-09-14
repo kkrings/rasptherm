@@ -1,0 +1,10 @@
+{
+  "name": "@rasptherm/rasptherm-e2e",
+  "version": "0.2.0",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@rasptherm/rasptherm"
+    ]
+  }
+}

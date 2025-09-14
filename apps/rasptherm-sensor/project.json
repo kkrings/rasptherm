@@ -2,13 +2,27 @@
   "name": "rasptherm-sensor",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/rasptherm-sensor/rasptherm_sensor",
+  "sourceRoot": "apps/rasptherm-sensor/src/rasptherm_sensor",
   "targets": {
-    "lock": {
-      "executor": "@nxlv/python:run-commands",
+    "install": {
+      "executor": "@nxlv/python:install",
       "options": {
-        "command": "poetry lock --no-update",
-        "cwd": "apps/rasptherm-sensor"
+        "silent": false,
+        "args": "",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lock": {
+      "executor": "@nxlv/python:lock",
+      "options": {
+        "update": false
+      }
+    },
+    "sync": {
+      "executor": "@nxlv/python:sync",
+      "options": {
+        "args": "--all-groups"
       }
     },
     "add": {
@@ -25,59 +39,59 @@
     },
     "build": {
       "executor": "@nxlv/python:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": ["{projectRoot}/dist"],
       "options": {
-        "outputPath": "dist/apps/rasptherm-sensor",
+        "outputPath": "{projectRoot}/dist",
         "publish": false,
         "lockedVersions": true,
         "bundleLocalDependencies": true
-      }
-    },
-    "install": {
-      "executor": "@nxlv/python:install",
-      "options": {
-        "silent": false,
-        "args": "",
-        "cacheDir": ".cache/poetry/rasptherm-sensor",
-        "verbose": false,
-        "debug": false
-      }
+      },
+      "cache": true
     },
     "lint": {
-      "executor": "@nxlv/python:run-commands",
+      "executor": "@nxlv/python:ruff-check",
+      "outputs": [],
       "options": {
-        "command": "poetry run ruff check rasptherm_sensor tests",
-        "cwd": "apps/rasptherm-sensor"
-      }
+        "lintFilePatterns": []
+      },
+      "cache": true
     },
     "format": {
-      "executor": "@nxlv/python:run-commands",
+      "executor": "@nxlv/python:ruff-format",
+      "outputs": [],
       "options": {
-        "command": "poetry run ruff format rasptherm_sensor tests",
-        "cwd": "apps/rasptherm-sensor"
-      }
+        "filePatterns": []
+      },
+      "cache": true
     },
     "test": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run pytest tests",
-        "cwd": "apps/rasptherm-sensor"
-      }
+        "command": "uv run pytest tests",
+        "cwd": "{projectRoot}"
+      },
+      "cache": true
     },
     "typecheck": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run mypy --strict rasptherm_sensor tests",
-        "cwd": "apps/rasptherm-sensor"
-      }
+        "command": "uv run mypy src tests",
+        "cwd": "{projectRoot}"
+      },
+      "cache": true
     },
     "cli": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run rasptherm-sensor",
-        "cwd": "apps/rasptherm-sensor"
+        "command": "uv run rasptherm-sensor",
+        "cwd": "{projectRoot}"
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "release": {
+    "version": {
+      "generator": "@nxlv/python:release-version"
+    }
+  }
 }

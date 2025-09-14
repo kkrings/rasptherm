@@ -4,7 +4,7 @@ import {
   createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { getErrorMessage } from '../utils/error';
 import { RootState } from './store';
 
@@ -12,7 +12,7 @@ export const ERROR_FEATURE_KEY = 'error';
 
 type ApiError = FetchBaseQueryError | SerializedError;
 
-interface ErrorState {
+export interface ErrorState {
   latestError: ApiError | null;
 }
 

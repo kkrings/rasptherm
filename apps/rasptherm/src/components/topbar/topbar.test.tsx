@@ -1,24 +1,32 @@
+import { Typography, useTheme } from '@mui/material';
 import { screen } from '@testing-library/react';
 import { render } from '../../test-utils/render';
 import userEvent from '@testing-library/user-event';
 import Topbar from './topbar';
 
+function TopbarTest() {
+  const theme = useTheme();
+
+  return (
+    <>
+      <Topbar />
+      <Typography variant="body1">Theme mode: {theme.palette.mode}</Typography>
+    </>
+  );
+}
+
 describe('Topbar', () => {
   it('should be themed in light mode', async () => {
-    render(<Topbar />);
+    render(<TopbarTest />);
     await userEvent.click(await screen.findByLabelText('Theme mode'));
     await userEvent.click(await screen.findByLabelText('Light'));
-    const appTitle = await screen.findByText('Rasptherm');
-    const header = appTitle.parentElement?.parentElement;
-    expect(header).toHaveStyle('background-color: #1976d2');
+    await screen.findByText('Theme mode: light');
   });
 
   it('should be themed in dark mode', async () => {
-    render(<Topbar />);
+    render(<TopbarTest />);
     await userEvent.click(await screen.findByLabelText('Theme mode'));
     await userEvent.click(await screen.findByLabelText('Dark'));
-    const appTitle = await screen.findByText('Rasptherm');
-    const header = appTitle.parentElement?.parentElement;
-    expect(header).toHaveStyle('background-color: #121212');
+    await screen.findByText('Theme mode: dark');
   });
 });

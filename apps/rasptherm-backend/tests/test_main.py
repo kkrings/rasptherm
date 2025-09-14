@@ -20,6 +20,6 @@ def expected_metadata() -> MetadataModel:
 
     return MetadataModel(
         description=metadata["Summary"],
-        license=metadata["License"],
+        license=metadata["License-Expression"],
         version=metadata["Version"],
     )
