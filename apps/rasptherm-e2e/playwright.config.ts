@@ -23,12 +23,30 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'npx nx run @rasptherm/rasptherm:preview',
-    url: 'http://localhost:4300',
-    reuseExistingServer: true,
-    cwd: workspaceRoot,
-  },
+  webServer: [
+    {
+      name: 'Sensor',
+      command:
+        'npx nx run rasptherm-sensor:cli -- serve-without-ssl --variant fake-static',
+      url: 'http://localhost:5000',
+      reuseExistingServer: true,
+      cwd: workspaceRoot,
+    },
+    {
+      name: 'Backend',
+      command: 'npx nx run rasptherm-backend:serve',
+      url: 'http://localhost:8000',
+      reuseExistingServer: true,
+      cwd: workspaceRoot,
+    },
+    {
+      name: 'Frontend',
+      command: 'npx nx run @rasptherm/rasptherm:preview',
+      url: 'http://localhost:4300',
+      reuseExistingServer: true,
+      cwd: workspaceRoot,
+    },
+  ],
   projects: [
     {
       name: 'chromium',

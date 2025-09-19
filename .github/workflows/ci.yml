@@ -8,40 +8,32 @@ jobs:
   ci:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      - run: pipx install poetry
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-          cache: 'poetry'
-      - uses: actions/setup-node@v4
+          python-version-file: ".python-version"
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
       - run: npm ci
         env:
           HUSKY: 0
-      - uses: nrwl/nx-set-shas@v4
       - run: npx nx format:check
-      - run: npx nx affected -t install
-      - run: npx nx affected -t format --check
-      - run: npx nx affected -t lint,typecheck
+      - run: npx nx affected -t sync
+      - run: npx nx affected -t format,lint,typecheck
       - run: npx nx affected -t test
         env:
           BACKEND_CORS_ENABLED: 'False'
           BACKEND_CORS_ALLOW_ORIGINS: '[]'
           BACKEND_SENSOR_HOST: 'https://www.example.com/'
-      - uses: cypress-io/github-action@v6
-        with:
-          install: false
-          start: |
-            npx nx run rasptherm-sensor:cli -- serve-without-ssl --variant fake-static
-            npx nx run rasptherm-backend:serve
-          command: npx nx run rasptherm-e2e:e2e:ci
+      - run: npx playwright install --with-deps
+      - run: npx nx run rasptherm-e2e:e2e:ci
         env:
           BACKEND_CORS_ENABLED: 'True'
-          BACKEND_CORS_ALLOW_ORIGINS: '["http://localhost:4200"]'
+          BACKEND_CORS_ALLOW_ORIGINS: '["http://localhost:4300"]'
           BACKEND_SENSOR_HOST: 'localhost:5000'
-          VITE_BACKEND_URL: 'http://127.0.0.1:8000'
+          VITE_BACKEND_URL: 'http://localhost:8000'
