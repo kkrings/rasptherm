@@ -23,9 +23,9 @@ jobs:
         env:
           HUSKY: 0
       - run: npx nx format:check
-      - run: npx nx affected -t sync
-      - run: npx nx affected -t format,lint,typecheck
-      - run: npx nx affected -t test
+      - run: npx nx run-many -t sync
+      - run: npx nx run-many -t format,lint,typecheck
+      - run: npx nx run-many -t test
         env:
           BACKEND_CORS_ENABLED: 'False'
           BACKEND_CORS_ALLOW_ORIGINS: '[]'
@@ -34,6 +34,6 @@ jobs:
       - run: npx nx run rasptherm-e2e:e2e:ci
         env:
           BACKEND_CORS_ENABLED: 'True'
-          BACKEND_CORS_ALLOW_ORIGINS: '["http://localhost:4300"]'
+          BACKEND_CORS_ALLOW_ORIGINS: '["http://127.0.0.1:4300"]'
           BACKEND_SENSOR_HOST: 'localhost:5000'
-          VITE_BACKEND_URL: 'http://localhost:8000'
+          VITE_BACKEND_URL: 'http://127.0.0.1:8000'
