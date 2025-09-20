@@ -25,8 +25,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: [
     {
-      command:
-        'npx nx run rasptherm-sensor:cli -- serve-without-ssl --variant fake-static',
+      command: 'npx nx run rasptherm-sensor:serve --variant=fake-static',
       reuseExistingServer: false,
       cwd: workspaceRoot,
     },

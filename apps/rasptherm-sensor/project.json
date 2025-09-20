@@ -80,10 +80,11 @@
       },
       "cache": true
     },
-    "cli": {
+    "serve": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "uv run rasptherm-sensor",
+        "command": "uv run rasptherm-sensor serve-without-ssl --variant={args.variant}",
+        "args": "--variant=fake-random",
         "cwd": "{projectRoot}"
       }
     }
